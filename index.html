@@ -1,4 +1,4 @@
-html>
+<!DOCTYPE html>
   <head>
     <title>AB Paradigm</title>
     <script src="jsPsych/jspsych.js"></script>
@@ -14,15 +14,17 @@ html>
   <body></body>
   <script>
 //Code adapted from paulsharpeY by Jordan Wylie & Dries Bostyn
+
 ///////////////////////////////////////////////////////
 var rsvp_task = []; // main timeline
 
 var welcome = {
       type: "html-keyboard-response",
-      stimulus: '<div style="color:black;font-size:40px;line-height:1.5">Welcome to our experiment! We will first switch your computer to full screen. <p>Press any key to begin.</p></div>',
+      stimulus: '<div style="color:black;font-size:40px;line-height:1.5">Welcome to our experiment! Please turn off any music or television, and put your phone on silent. This experiment will take about 15-20 minutes. <p>Press any key to begin.</p></div>',
     };
     rsvp_task.push(welcome);
 
+///////////////////////////////////////////////////////
 /* Computer things */
 
 rsvp_task.push({
@@ -61,7 +63,7 @@ var instructionsGEN = {
       type: "instructions",
       pages: ['<div style="color:black;font-size:30px;line-height:1.5"> This experiment tests your memory about words. </p>' +
           " <p> First, you will read a short passage and answer some questions.</p>"+ 
-          ' <p> Then, you will be tested on your ability to remember two words that appear in green. We will begin with a practice trial. </p>' +
+          ' <p> Then, you will be tested on your ability to remember two words that appear in green. We will begin with a practice trial that uses letters and numbers. </p>' +
           " <p><b>Please press the right arrow key to continue. </b></p></div>"],
         key_forward: 'rightarrow',
       post_trial_gap: 1500
@@ -69,7 +71,7 @@ var instructionsGEN = {
 	rsvp_task.push(instructionsGEN);
 
 // instructions
-var instructions_1 = {
+var instructions_prac = {
   type: "html-keyboard-response",
   stimulus: "<div class='instructions'><p>You will see a series of letters and numbers rapidly " +
             "appearing on the computer screen. Your task is to remember " +
@@ -81,87 +83,177 @@ var instructions_1 = {
   data: {test_part: 'instructions'},
   post_trial_gap: 1000
 };
-rsvp_task.push(instructions_1);
+rsvp_task.push(instructions_prac);
 
 // make slow instruction trial
 rsvp_task.push(make_rsvp_timeline([ {t1_location: 8, lag: 3} ], 'instructions'));
 
-var instructions_2 = {
+var instructions_prac2 = {
   type: "html-keyboard-response",
   stimulus: "<div class='instructions'><p>In the example you just saw, " +
             "the letters and numbers appeared quite slowly.</p>" +
-            "<p>The real task is more challenging, as the letters and numbers " +
+            "<p>The real task is more challenging, as the words " +
             "will appear much more rapidly.</p>" +
             "<p>You will have some time to practice before starting the test.</p>" +
             "<p>Press any key to start the practice.</p></div>",
-  data: {test_part: 'instructions_2'},
+  data: {test_part: 'instructions'},
   post_trial_gap: 1000
 };
-rsvp_task.push(instructions_2);
+rsvp_task.push(instructions_prac2);
 
-
-var instructionsENCODE = {
+var instructionsCond = {
       type: "instructions",
-      pages: ['<div style="color:black;font-size:30px;line-height:1.5"> We will now present a set of 10 faces for you to remember. Please try to remember each these of the faces as best you can.' +
+      pages: ['<div style="color:black;font-size:30px;line-height:1.5"> We will now present you with a short newspaper article to read. After you finish the article, you will be asked to craft an argument about it.' +
         '<b><p> Please press the right arrow key to continue. </p></b></div>'],
         key_forward: 'rightarrow',
       post_trial_gap: 1500
     };
-	rsvp_task.push(instructionsENCODE);
-
-
+	rsvp_task.push(instructionsCond);
 
 ///////////////////////////////////////////////////////
-// AB stimuli
+// AB stimuli -- word lists 
 var response_choices = keyCodeRange('f', 'j');
-var stimulitarget1 = [
-      { img: "jsPsych/examples/img/Brett Kavanaugh.png"},
-      { img: "jsPsych/examples/img/Joseph Stalin.png"},
-      { img: "jsPsych/examples/img/Fidel Castro.png"},
-      { img: "jsPsych/examples/img/Harvey Weinstein.png"},
-      { img: "jsPsych/examples/img/Ted Bundy.png"},
-      { img: "jsPsych/examples/img/Kevin Spacey.png"},
-      { img: "jsPsych/examples/img/Pablo Escobar.png"},
-      { img: "jsPsych/examples/img/Saddam Hussein.png"},
-      { img: "jsPsych/examples/img/Bennito Mussolini.png"},
-      { img: "jsPsych/examples/img/Larry Nassar.png"}
+
+var targetsAuthority = [
+    { target: 'accuse', type: 'Authority'},
+    { target: 'agitate' , type: 'Authority'},
+    { target: 'alienate', type: 'Authority'},
+    { target: 'anarchist',type: 'Authority'},
+    { target: 'banning', type: 'Authority'},
+    { target: 'bedlam', type: 'Authority'},
+    { target: 'chaotic', type: 'Authority'},
+    { target: 'contempt', type: 'Authority'},
+    { target: 'counter', type: 'Authority'},
+    { target: 'defector', type: 'Authority'},
+    { target: 'defiant',type: 'Authority'},
+    { target: 'defying', type: 'Authority'},
+    { target: 'demonstrator', type: 'Authority'},
+    { target: 'denounce', type: 'Authority'},
+    { target: 'disarray', type: 'Authority'},
+    { target: 'dishonorable', type: 'Authority'},
+    { target: 'disobeying', type: 'Authority'},
+    { target: 'disorder', type: 'Authority'},
+    { target: 'disrespect', type: 'Authority'},
+    { target: 'disruption', type: 'Authority'},
+    { target: 'dissenting', type: 'Authority'},
+    { target: 'dissident', type: 'Authority'},
+    { target: 'flag', type: 'Authority'},
+    { target: 'fossil', type: 'Authority'},
+    { target: 'heretical', type: 'Authority'},
+    { target: 'illegal', type: 'Authority'},
+    { target: 'impolite', type: 'Authority'},
+    { target: 'insubordinate', type: 'Authority'},
+    { target: 'insurgent', type: 'Authority'},
+    { target: 'insurrection', type: 'Authority'},
+    { target: 'intimidation', type: 'Authority'},
+    { target: 'lawless', type: 'Authority'},
+    { target: 'misrule', type: 'Authority'},
+    { target: 'mutiny', type: 'Authority'},
+    { target: 'nonconforming', type: 'Authority'},
+    { target: 'obstruct', type: 'Authority'},
+    { target: 'oppose', type: 'Authority'},
+    { target: 'orders', type: 'Authority'},
+    { target: 'overpowering', type: 'Authority'},
+    { target: 'overthrowing', type: 'Authority'},
+    { target: 'pandemonium', type: 'Authority'},
+    { target: 'protesting', type: 'Authority'},
+    { target: 'rabble rousing', type: 'Authority'},
+    { target: 'raising hell', type: 'Authority'},
+    { target: 'rebelling', type: 'Authority'},
+    { target: 'refusing', type: 'Authority'},
+    { target: 'remonstrate', type: 'Authority'},
+    { target: 'renegades', type: 'Authority'},
+    { target: 'resist', type: 'Authority'},
+    { target: 'rioting', type: 'Authority'},
+    { target: 'rock the boat', type: 'Authority'},
+    { target: 'scheme', type: 'Authority'},
+    { target: 'sedition', type: 'Authority'},
+    { target: 'subverting', type: 'Authority'},
+    { target: 'supremacy', type: 'Authority'},
+    { target: 'transgression', type: 'Authority'},
+    { target: 'trouble maker', type: 'Authority'},
+    { target: 'tumultuous', type: 'Authority'},
+    { target: 'unauthorized', type: 'Authority'},
+    { target: 'unlawfully', type: 'Authority'},
+    { target: 'unruly', type: 'Authority'},
+    { target: 'uprising', type: 'Authority'},
+    { target: 'violate', type: 'Authority'}
     ]
 
-var stimulitarget2 = [
-      {  img2:  "jsPsych/examples/img/Brett Kavanaugh_label.png"},
-      {  img2:  "jsPsych/examples/img/Joseph Stalin_label.png.png"},
-      {  img2:  "jsPsych/examples/img/Fidel Castro_label.png"},
-      {  img2:  "jsPsych/examples/img/Harvey Weinstein_label.png"},
-      {  img2:  "jsPsych/examples/img/Ted Bundy_label.png"},
-      {  img2:  "jsPsych/examples/img/Kevin Spacey_label.png"},
-      {  img2:  "jsPsych/examples/img/Pablo Escobar_label.png"},
-      {  img2:  "jsPsych/examples/img/Saddam Hussein_label.png"},
-      {  img2:  "jsPsych/examples/img/Bennito Mussolini_label.png"},
-      {  img2:  "jsPsych/examples/img/Larry Nassar_label.png"}
+var targetsFairness = [
+    { target: 'behind their back', type: 'Fairness'},
+    { target: 'biased', type: 'Fairness'},
+    { target: 'bigoted', type: 'Fairness'},
+    { target: 'bilking', type: 'Fairness'},
+    { target: 'blackmailing', type: 'Fairness'},
+    { target: 'chauvinists', type: 'Fairness'},
+    { target: 'cheating', type: 'Fairness'},
+    { target: 'con artist', type: 'Fairness'},
+    { target: 'conniving', type: 'Fairness'},
+    { target: 'corrupt', type: 'Fairness'},
+    { target: 'crook', type: 'Fairness'},
+    { target: 'deception', type: 'Fairness'},
+    { target: 'defrauding', type: 'Fairness'},
+    { target: 'disadvantaged', type: 'Fairness'},
+    { target: 'discrimination', type: 'Fairness'},
+    { target: 'dishonest', type: 'Fairness'},
+    { target: 'disparity', type: 'Fairness'},
+    { target: 'disproportionate', type: 'Fairness'},
+    { target: 'distrustful', type: 'Fairness'},
+    { target: 'double crossing', type: 'Fairness'},
+    { target: 'duplicitous', type: 'Fairness'},
+    { target: 'exclude', type: 'Fairness'},
+    { target: 'false advertising', type: 'Fairness'},
+    { target: 'false witness', type: 'Fairness'},
+    { target: 'favoritism', type: 'Fairness'},
+    { target: 'fleecing', type: 'Fairness'},
+    { target: 'fraudulent', type: 'Fairness'},
+    { target: 'free rider', type: 'Fairness'},
+    { target: 'freeloading', type: 'Fairness'},
+    { target: 'hoodwinking', type: 'Fairness'},
+    { target: 'hypocrite', type: 'Fairness'},
+    { target: 'imbalance', type: 'Fairness'},
+    { target: 'imposters', type: 'Fairness'},
+    { target: 'inequality', type: 'Fairness'},
+    { target: 'inequity', type: 'Fairness'},
+    { target: 'injustice', type: 'Fairness'},
+    { target: 'lying', type: 'Fairness'},
+    { target: 'mislead', type: 'Fairness'},
+    { target: 'misogyny', type: 'Fairness'},
+    { target: 'mooching', type: 'Fairness'},
+    { target: 'oppression', type: 'Fairness'},
+    { target: 'partiality', type: 'Fairness'},
+    { target: 'pickpocketing', type: 'Fairness'},
+    { target: 'plagiarize', type: 'Fairness'},
+    { target: 'prejudiced', type: 'Fairness'},
+    { target: 'restrictive', type: 'Fairness'},
+    { target: 'ripoff', type: 'Fairness'},
+    { target: 'robbed', type: 'Fairness'},
+    { target: 'scamming', type: 'Fairness'},
+    { target: 'segregating', type: 'Fairness'},
+    { target: 'sexism', type: 'Fairness'},
+    { target: 'shyster', type: 'Fairness'},
+    { target: 'steal', type: 'Fairness'},
+    { target: 'suckered', type: 'Fairness'},
+    { target: 'swindles', type: 'Fairness'},
+    { target: 'thieving', type: 'Fairness'},
+    { target: 'tricking', type: 'Fairness'},
+    { target: 'unequal', type: 'Fairness'},
+    { target: 'unfair', type: 'Fairness'},
+    { target: 'uninsured', type: 'Fairness'},
+    { target: 'unjust', type: 'Fairness'},
+    { target: 'unscrupulous', type: 'Fairness'},
+    { target: 'untrustworthy', type: 'Fairness'}
     ]
- var distract_stimuli = [
-        "jsPsych/examples/img/Jeffrey Epstein.png",
-        "jsPsych/examples/img/Jeffrey Dahmer.png",
-        "jsPsych/examples/img/El Chapo.png",
-        "jsPsych/examples/img/Qasem Soleimani.png",
-        "jsPsych/examples/img/Steve Bannon.png",
-        "jsPsych/examples/img/Lee Harvey Oswald.png",
-        "jsPsych/examples/img/Matt Lauer.png",
-        "jsPsych/examples/img/Vladimir Lenin.png",
-        "jsPsych/examples/img/Rudy Guiliani.png",
-        "jsPsych/examples/img/Lance Armstrong.png",
-        "jsPsych/examples/img/Karl Rove.png",
-        "jsPsych/examples/img/Charles Manson.png",
-        "jsPsych/examples/img/Robert E. Lee.png",
-        "jsPsych/examples/img/Adolf Eichmann.png",
-        "jsPsych/examples/img/Heinrich Himmler.png",
-        "jsPsych/examples/img/Joseph Goebbels.png",
-        "jsPsych/examples/img/Ghengis Khan.png"
+
+var distractors = [
+      {distractor: 'violate', type: 'Neutral'}
     ]
+
 //////////////////////////////////////
-//beginning encoding period/manipulation
+//* Between Subjects Cond 1 = ??
+// to do: replace this with the actual condition information/vignettes
 
-//* Between Cond 1 = ΝΟ LABEL
 var encode1 = {
         type: 'image-keyboard-response',
         stimulus: jsPsych.timelineVariable('img'),
@@ -174,7 +266,7 @@ var encode_procedure1 = {
     randomize_order: true 
 };
 
-//* Between Cond 2 = LABEL
+//* Between Cond 2 = ??
 var encode2 = {
         type: 'image-keyboard-response',
         stimulus: jsPsych.timelineVariable('img2'),
@@ -194,7 +286,22 @@ var encode2 = {
 var conditions = [encode_procedure1, encode_procedure2];
 var cond = jsPsych.randomization.sampleWithoutReplacement(conditions,1)[0];
 console.log('condition: ', cond);  // check console to see which condition was selected
-timeline.push(cond);
+rsvp_task.push(cond);
+
+//////////////////////////////////////
+
+var instructions_main = {
+  type: "html-keyboard-response",
+  stimulus: "<div class='instructions'><p>We will now begin the main experimental task." +
+            "Your task is to find words that appear in green.</p>" +
+            "<p>Occasionally, you will be asked to type <b>2</b> words that were in green.</p>" +
+            "<p>When that happens, it doesn't matter what order you type the words. </p>" +
+            "<p>If you don't remember a word, you can indicate that by pressing the '1' key</p>" +
+            "<p>Press any key to begin the experiment.</p></div>",
+  data: {test_part: 'instructions'},
+  post_trial_gap: 1000
+};
+rsvp_task.push(instructions_main);
 
 //////////////////////////////////////
 // stimuli definitions
@@ -324,8 +431,8 @@ function keyCodeRange (start, end) {
 
 ///////////////////////////////////////////////////////////////
 function rsvp_trial(o) {
-	var stimuli                    = jsPsych.randomization.sampleWithoutReplacement(distract_stimuli, 10);
-	var targets                    = jsPsych.randomization.sampleWithoutReplacement(stimulitarget1, 2);
+	var stimuli                    = jsPsych.randomization.sampleWithoutReplacement(distractors, 10);
+	var targets                    = jsPsych.randomization.sampleWithoutReplacement(targetsAuthority, 2);
 	stimuli[o.t1_location]         = targets[0];
 	stimuli[o.t1_location + o.lag] = targets[1];
 
@@ -413,3 +520,81 @@ function make_rsvp_timeline(trials, phase) {
 	}
 	return { timeline: rsvp_timeline }
 }
+
+////////////////////////////////////////////////////////////////
+var Genderq = ["Man", "Woman", "Non-binary", "Other", "Prefer not to answer"];
+var PolIDq = ["Extremely Liberal", " ", " ", " Neither", " ", " ", "Extremely Conservative"];
+var Relq = ["Not at all Religious", " ", " ", " ", " ", " ", "Extremely Religious"];
+var Incomeq = ["Less than $10,000 USD a year", "$10,000 - $20,000 USD", "$20,000-$40,000 USD", "$40,000-$60,000 USD", "$60,000-$80,000 USD", "$80,000-$100,000 USD", "$100,000 USD a year or more"];
+var Raceq = ["White, not hispanic or latinx", "Black or African American", "Asian", "American Indian or Alaska Native", "Native Hawaiian or Other Pacific Islander", "Hispanic or Latinx", "Two or more", "Not listed"];
+var Demand1q = ["Not at all", " ", " ", " ", "Very much so"];
+var compTypeq = ["Laptop/Desktop", "Ipad/Tablet", "Other"];
+
+
+var demo_Age = {
+        type: 'survey-text',
+        questions: [
+        {prompt: 'How old are you?', columns: 3, required: true, name: 'Age'},
+        {prompt: 'What is your religious affiliation?', columns: 50, name: 'Religious Affiliation'}
+        ],
+        randomize_question_order: true
+        };
+
+var demo_gen = {
+        type: 'survey-multi-choice',
+        questions: [
+            {prompt: '<p style="text-align: left;font-size:20px;">What is your Gender?</p>', options: Genderq, required: true, horizontal: true,}, 
+            {prompt: '<p style="text-align: left;font-size:20px;">Which of the following items BEST describes your ethnic or racial background?</p>', options: Raceq, required: true, horizontal: true},
+            {prompt: '<p style="text-align: left;font-size:20px;">How religious would you consider yourself?</p>', options: Relq, required: true, horizontal: true,}, 
+            {prompt: '<p style="text-align: left;font-size:20px;">What is your household income?</p>', options: Incomeq, required: true, horizontal: true}
+          ],
+        randomize_question_order: true,
+        preamble: '<p style="text-align: left;font-size:28px;"Using the scales provided, please respond to each question about you as an individual.</p>'
+        };
+
+var demo_PolIQ = {
+        type: 'survey-multi-choice',
+        questions: [
+            {prompt: '<p style="text-align: left;font-size:20px;">Which response best captures your political beliefs surrounding economic issues?</p>', options: PolIDq, required: true, horizontal: true,}, 
+            {prompt: '<p style="text-align: left;font-size:20px;">Which response best captures your political beliefs surrounding social issues?</p>', options: PolIDq, required: true, horizontal: true},
+            {prompt: '<p style="text-align: left;font-size:20px;">When it comes to overall political issues, you consider yourself to be a:</p>', options: PolIDq, required: true, horizontal: true,}
+        ],
+        randomize_question_order: true,
+        preamble: '<p style="text-align: left;font-size:28px;"Please answer the following questions about your political ideology.</p>'
+        };
+
+var demo_FinalQs = {
+        type: 'survey-multi-choice',
+        questions: [
+            {prompt: '<p style="text-align: left;font-size:20px;">What kind of device did you use to complete this study?</p>', options: compTypeq, required: true, horizontal: true,}, 
+            {prompt: '<p style="text-align: left;font-size:20px;">Did you feel pressure to respond in a particular way to any of the questions?</p>', options: Demand1q, required: true, horizontal: true,}, 
+            {prompt: '<p style="text-align: left;font-size:20px;">Did you feel as though you might be judged for your responses to the questions you answered.</p>', options: Demand1q, required: true, horizontal: true}        
+          ],
+        randomize_question_order: true,
+        preamble: '<p style="text-align: left;font-size:28px;"For these final questions, please answer as honestly as you can! The answers to these questions will not affect whether or not you receive credit/payment for participation!</p>'
+        };
+
+//////////////////////////////////////////////////////////////
+rsvp_timeline.push(demo_Age);
+rsvp_timeline.push(demo_gen);
+rsvp_timeline.push(demo_PolIQ);
+rsvp_timeline.push(demo_FinalQs);
+
+////////////////////////////////////////////////////////////////
+///* define debrief */
+
+var debrief = {
+      type: "html-keyboard-response",
+      stimulus: "<p>Thank you for your participation!</p>" + 
+      "<p>Some things.",
+      post_trial_gap: 2000
+    };
+    tl.push(debrief);
+
+////////////////////////////////////////////////////////////////
+/* start the experiment */
+jsPsych.init({
+  timeline: rsvp_timeline
+});
+
+</script>
