@@ -13,6 +13,7 @@
   </head>
   <body></body>
   <script>
+
 //Code adapted from paulsharpeY by Jordan Wylie & Dries Bostyn
 
 ///////////////////////////////////////////////////////
@@ -63,7 +64,7 @@ var instructionsGEN = {
       type: "instructions",
       pages: ['<div style="color:black;font-size:30px;line-height:1.5"> This experiment tests your memory about words. </p>' +
           " <p> First, you will read a short passage and answer some questions.</p>"+ 
-          ' <p> Then, you will be tested on your ability to remember two words that appear in green. We will begin with a practice trial that uses letters and numbers. </p>' +
+          ' <p> Then, you will be tested on your ability to remember two words that appear in <b>green</b>. We will begin with a practice trial that uses letters and numbers. </p>' +
           " <p><b>Please press the right arrow key to continue. </b></p></div>"],
         key_forward: 'rightarrow',
       post_trial_gap: 1500
@@ -247,36 +248,73 @@ var targetsFairness = [
     ]
 
 var distractors = [
-      {distractor: 'violate', type: 'Neutral'}
+      {distractor: 'violate', type: 'Neutral',
+      distractor: 'alike', type: 'Neutral',
+      distractor: 'along', type: 'Neutral',
+      distractor: 'apply', type: 'Neutral',
+      distractor: 'asset', type: 'Neutral',
+      distractor: 'bunch', type: 'Neutral',
+      distractor: 'coast', type: 'Neutral',
+      distractor: 'drum', type: 'Neutral',
+      distractor: 'even', type: 'Neutral',
+      distractor: 'foam', type: 'Neutral',
+      distractor: 'focu', type: 'Neutral',
+      distractor: 'form', type: 'Neutral',
+      distractor: 'hike', type: 'Neutral',
+      distractor: 'hint', type: 'Neutral',
+      distractor: 'icon', type: 'Neutral',
+      distractor: 'maze', type: 'Neutral',
+      distractor: 'novel', type: 'Neutral',
+      distractor: 'olive', type: 'Neutral',
+      distractor: 'pile', type: 'Neutral',
+      distractor: 'press', type: 'Neutral',
+      distractor: 'scale', type: 'Neutral',
+      distractor: 'shape', type: 'Neutral',
+      distractor: 'solid', type: 'Neutral',
+      distractor: 'suite', type: 'Neutral',
+      distractor: 'swing', type: 'Neutral',
+      distractor: 'tile', type: 'Neutral',
+      distractor: 'title', type: 'Neutral',
+      distractor: 'walk', type: 'Neutral',
+      distractor: 'wave', type: 'Neutral'}
     ]
 
 //////////////////////////////////////
 //* Between Subjects Cond 1 = ??
 // to do: replace this with the actual condition information/vignettes
 
-var encode1 = {
+var vignette1 = [
+      {
+      }]
+
+var between1 = {
         type: 'image-keyboard-response',
         stimulus: jsPsych.timelineVariable('img'),
         choices: jsPsych.NO_KEYS,
         trial_duration: 3000
       };
-var encode_procedure1 = {
+var bw_procedure1 = {
     timeline: [fixation, encode1],
-    timeline_variables: stimulitarget1, 
+    timeline_variables: vignette1, 
     randomize_order: true 
 };
 
 //* Between Cond 2 = ??
-var encode2 = {
+
+var vignette2 = [
+      {
+      }]
+
+var between2 = {
         type: 'image-keyboard-response',
         stimulus: jsPsych.timelineVariable('img2'),
         choices: jsPsych.NO_KEYS,
         trial_duration: 3000
       };
 
-  var encode_procedure2 = {
+  var bw_procedure2 = {
       timeline: [fixation, encode2],
-      timeline_variables: stimulitarget2,
+      timeline_variables: vignette2,
       randomize_order: true
   };
 
@@ -368,14 +406,16 @@ var response_block = {
   }
 }
 
+//////////////////////////////////////////////////////////
 // Factorial design
-// 3 locations x 4 lags = 12
+// 3 locations x 3 lags = 9
+// this isn't fixed yet....
 var factors = {
     t1_location: [7, 8, 9],
-    lag: [1, 3, 5, 8]
+    lag: [1, 3, 5]
 };
 var practice_repetitions = 2;
-var test_repetitions     = 12;
+var test_repetitions     = 15;
 var practice_block       = 0;
 
 var performance_block = {
@@ -430,9 +470,11 @@ function keyCodeRange (start, end) {
 }
 
 ///////////////////////////////////////////////////////////////
+//this isn't right yet....
 function rsvp_trial(o) {
 	var stimuli                    = jsPsych.randomization.sampleWithoutReplacement(distractors, 10);
-	var targets                    = jsPsych.randomization.sampleWithoutReplacement(targetsAuthority, 2);
+  var tar = [targetsAuthority, targetsFairness];
+	var targets                    = jsPsych.randomization.sampleWithoutReplacement(tar, 1);
 	stimuli[o.t1_location]         = targets[0];
 	stimuli[o.t1_location + o.lag] = targets[1];
 
@@ -441,6 +483,9 @@ function rsvp_trial(o) {
 
 ///////////////////////////////////////////////////////////////
 // Make a block of RSVP stimuli and responses
+
+//havent attempted this yet....
+
 function make_rsvp_timeline(trials, phase) {
 	rsvp_timeline = [];
 	trial_number  = 0;
@@ -529,7 +574,6 @@ var Incomeq = ["Less than $10,000 USD a year", "$10,000 - $20,000 USD", "$20,000
 var Raceq = ["White, not hispanic or latinx", "Black or African American", "Asian", "American Indian or Alaska Native", "Native Hawaiian or Other Pacific Islander", "Hispanic or Latinx", "Two or more", "Not listed"];
 var Demand1q = ["Not at all", " ", " ", " ", "Very much so"];
 var compTypeq = ["Laptop/Desktop", "Ipad/Tablet", "Other"];
-
 
 var demo_Age = {
         type: 'survey-text',
