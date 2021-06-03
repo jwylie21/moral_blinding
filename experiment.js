@@ -347,4 +347,13 @@ var debrief = {
       "<p>Some things.",
       post_trial_gap: 2000
     };
-    tl.push(debrief);
+	tl.push(debrief);
+
+////////////////////////////////////////////////////////////////
+jsPsych.init({
+	  timeline: rsvp_task,
+	  on_finish: function (data) {
+		jsPsych.data.displayData();
+	}
+}
+)
