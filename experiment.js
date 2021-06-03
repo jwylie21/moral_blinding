@@ -347,7 +347,7 @@ var debrief = {
       "<p>Some things.",
       post_trial_gap: 2000
     };
-	tl.push(debrief);
+rsvp_task.push(debrief);
 
 ////////////////////////////////////////////////////////////////
 jsPsych.init({
