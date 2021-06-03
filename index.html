@@ -5,56 +5,22 @@
 <link rel='stylesheet' type='text/css' href='jsPsych/css/default_style.css'>
 <link rel='stylesheet' type='text/css' href='jsPsych/css/style.css'>
 <link href="jsPsych/css/jspsych.css" rel="stylesheet" type="text/css">
+
+<script src="jsPsych/jspsych.js"></script>
+<script src='jsPsych/jquery.min.js'></script>
+<script src='jsPsych/math.min.js'></script>
+<script src="jsPsych/plugins/jspsych-html-keyboard-response.js"></script>
+<script src="jsPsych/plugins/jspsych-fullscreen.js"></script>
+<script src='jsPsych/plugins/poldrack_plugins/poldrack_utils.js'></script>
+<script src="jsPsych/plugins/jspsych-resize.js"></script>
+<script src="jsPsych/plugins/jspsych-virtual-chinrest.js"></script>
+<script src="jsPsych/plugins/jspsych-instructions.js"></script>
+<script src="jsPsych/plugins/jspsych-survey-text.js"></script>
+<script src="jsPsych/plugins/jspsych-image-keyboard-response.js"></script>
+<script src="jsPsych/plugins/jspsych-survey-multi-choice.js"></script>
+
 </head>
 
-<body>
-    <script src="jsPsych/jspsych.js"></script>
-    <script src='jsPsych/jquery.min.js'></script>
-    <script src='jsPsych/math.min.js'></script>
-    <script src="jsPsych/plugins/jspsych-html-keyboard-response.js"></script>
-    <script src="jsPsych/plugins/jspsych-fullscreen.js"></script>
-    <script src='jsPsych/plugins/poldrack_plugins/poldrack_utils.js'></script>
-    <script src="jsPsych/plugins/jspsych-resize.js"></script>
-    <script src="jsPsych/plugins/jspsych-virtual-chinrest.js"></script>
-    <script src="jsPsych/plugins/jspsych-instructions.js"></script>
-    <script src="jsPsych/plugins/jspsych-survey-text.js"></script>
-    <script src="jsPsych/plugins/jspsych-image-keyboard-response.js"></script>
-    <script src="jsPsych/plugins/jspsych-survey-multi-choice.js"></script>
-    <script src='experiment.js'></script>
- 
-    <script>
-      $( document ).ready(function() {
-          jsPsych.init({
-                   timeline: rsvp_task,
-                   on_trial_finish: function(data) {
-                     addID('rsvp-task')
-                   },
-                   on_finish: function(data) {
-                       // serialize the data
-                       var promise = new Promise(function(resolve, reject) {
-                           var data = jsPsych.data.get().json();
-                           resolve(data);
-                       })
-                       promise.then(function(data) {
-                           $.ajax({
-                               type: "POST",
-                               url: '/save',
-                               data: { "data": data },
-                               success: function(){ document.location = "/next" },
-                               dataType: "application/json",
-                               // FIXME: https://github.com/expfactory/expfactory/issues/76
-                               error: function(err) {
-                                   if (err.status == 200) {          // endpoint not running
-                                      document.location = "/next"
-                                   } else {                          // local save
-                                       jsPsych.data.get().localSave('json','rsvp-task_results.json');
-                                  }
-                               }
-                           });
-                       })
-                   }
-            });
-      });
-      </script>
-      </body>
-      </html>
+<script src='experiment.js'></script>
+
+ </html>
