@@ -344,7 +344,7 @@ rsvp_task.push(demo_FinalQs);
 var debrief = {
       type: "html-keyboard-response",
       stimulus: "<p>Thank you for your participation!</p>" + 
-      "<p>Some things.",
+      "<p>Some debrief things here.",
       post_trial_gap: 2000
     };
 rsvp_task.push(debrief);
