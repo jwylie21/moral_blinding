@@ -192,8 +192,8 @@ var instructionsGEN = {
 		" <p> First, you will read a short passage and answer some questions.</p>"+ 
 		' <p> Then, you will be tested on your ability to remember two words that appear in <font color="green"><b>green</b></font>. We will begin with a practice trial. </p>' +
 		" <p><b>Please press the SPACE BAR to continue. </b></p></div>"],
-		choices: ['space'],
-	  	data: {test_part: 'instructions'},
+	choices: [" "],
+	data: {test_part: 'instructions'},
 	post_trial_gap: 1500
   };
   rsvp_task.push(instructionsGEN);
