@@ -190,8 +190,9 @@ var instructionsGEN = {
 	type: "html-keyboard-response",
 	stimulus: ['<div style="color:black;font-size:30px;line-height:1.5"> This experiment tests your memory about words. </p>' +
 		" <p> First, you will read a short passage and answer some questions.</p>"+ 
-		' <p> Then, you will be tested on your ability to remember two words that appear in <b>green</b>. We will begin with a practice trial. </p>' +
-		" <p><b>Please press any key to continue. </b></p></div>"],
+		' <p> Then, you will be tested on your ability to remember two words that appear in <font color="green"><b>green</b></font>. We will begin with a practice trial. </p>' +
+		" <p><b>Please press the SPACE BAR to continue. </b></p></div>"],
+		choices: ['space'],
 	  	data: {test_part: 'instructions'},
 	post_trial_gap: 1500
   };
@@ -210,7 +211,8 @@ var instructions_prac2 = {
 			  "<p>The real task is more challenging, as the words " +
 			  "will appear more rapidly.</p>" +
 			  "<p>You will have some time to practice before starting the test.</p>" +
-			  "<p>Press any key to start the practice.</p></div>",
+			  "<p>Press the SPACE BAR to begin the practice.</p></div>",
+	choices: ['space'],
 	data: {test_part: 'instructions'},
 	post_trial_gap: 1000
   };
@@ -270,13 +272,79 @@ lagvector = jsPsych.randomization.repeat([1,2], targetsAuthority.length);
 //Some final instructions
 var instructions_blockend = {
 	type: "html-keyboard-response",
-	stimulus: "<div class='instructions'><p>THIS WAS THE FINAL BLOCK, " +
-			  "more text here.</p>" +
-			  "<p>more text here " +
-			  "or here.</p>" +
-			  "<p>Some more here</p>" +
-			  "<p>Also here.</p></div>",
+	stimulus: "<div class='instructions'><p>THAT WAS THE FINAL BLOCK, " +
+			  "We will now ask you some questions about yourself.</p>" +
+			  "<p>Please press ANY KEY to continue.</p></div>",
 	data: {test_part: 'instructions'}, // CHANGE THIS??
 	post_trial_gap: 1000
   };
-  rsvp_task.push(instructions_blockend);
+rsvp_task.push(instructions_blockend);
+
+////////////////////////////////////////////////////////////////
+var Genderq = ["Man", "Woman", "Non-binary", "Other", "Prefer not to answer"];
+var PolIDq = ["Extremely Liberal", " ", " ", " Neither", " ", " ", "Extremely Conservative"];
+var Relq = ["Not at all Religious", " ", " ", " ", " ", " ", "Extremely Religious"];
+var Incomeq = ["Less than $10,000 USD a year", "$10,000 - $20,000 USD", "$20,000-$40,000 USD", "$40,000-$60,000 USD", "$60,000-$80,000 USD", "$80,000-$100,000 USD", "$100,000 USD a year or more"];
+var Raceq = ["White, not hispanic or latinx", "Black or African American", "Asian", "American Indian or Alaska Native", "Native Hawaiian or Other Pacific Islander", "Hispanic or Latinx", "Two or more", "Not listed"];
+var Demand1q = ["Not at all", " ", " ", " ", "Very much so"];
+var compTypeq = ["Laptop/Desktop", "Ipad/Tablet", "Other"];
+
+var demo_Age = {
+        type: 'survey-text',
+        questions: [
+        {prompt: 'How old are you?', columns: 3, required: true, name: 'Age'},
+        {prompt: 'What is your religious affiliation?', columns: 50, name: 'Religious Affiliation'}
+        ],
+        randomize_question_order: true
+        };
+
+var demo_gen = {
+        type: 'survey-multi-choice',
+        questions: [
+            {prompt: '<p style="text-align: left;font-size:20px;">What is your Gender?</p>', options: Genderq, required: true, horizontal: true,}, 
+            {prompt: '<p style="text-align: left;font-size:20px;">Which of the following items BEST describes your ethnic or racial background?</p>', options: Raceq, required: true, horizontal: true},
+            {prompt: '<p style="text-align: left;font-size:20px;">How religious would you consider yourself?</p>', options: Relq, required: true, horizontal: true,}, 
+            {prompt: '<p style="text-align: left;font-size:20px;">What is your household income?</p>', options: Incomeq, required: true, horizontal: true}
+          ],
+        randomize_question_order: true,
+        preamble: '<p style="text-align: left;font-size:28px;"Using the scales provided, please respond to each question about you as an individual.</p>'
+        };
+
+var demo_PolIQ = {
+        type: 'survey-multi-choice',
+        questions: [
+            {prompt: '<p style="text-align: left;font-size:20px;">Which response best captures your political beliefs surrounding economic issues?</p>', options: PolIDq, required: true, horizontal: true,}, 
+            {prompt: '<p style="text-align: left;font-size:20px;">Which response best captures your political beliefs surrounding social issues?</p>', options: PolIDq, required: true, horizontal: true},
+            {prompt: '<p style="text-align: left;font-size:20px;">When it comes to overall political issues, you consider yourself to be a:</p>', options: PolIDq, required: true, horizontal: true,}
+        ],
+        randomize_question_order: true,
+        preamble: '<p style="text-align: left;font-size:28px;"Please answer the following questions about your political ideology.</p>'
+        };
+
+var demo_FinalQs = {
+        type: 'survey-multi-choice',
+        questions: [
+            {prompt: '<p style="text-align: left;font-size:20px;">What kind of device did you use to complete this study?</p>', options: compTypeq, required: true, horizontal: true,}, 
+            {prompt: '<p style="text-align: left;font-size:20px;">Did you feel pressure to respond in a particular way to any of the questions?</p>', options: Demand1q, required: true, horizontal: true,}, 
+            {prompt: '<p style="text-align: left;font-size:20px;">Did you feel as though you might be judged for your responses to the questions you answered.</p>', options: Demand1q, required: true, horizontal: true}        
+          ],
+        randomize_question_order: true,
+        preamble: '<p style="text-align: left;font-size:28px;"For these final questions, please answer as honestly as you can! The answers to these questions will not affect whether or not you receive credit/payment for participation!</p>'
+        };
+
+//////////////////////////////////////////////////////////////
+rsvp_task.push(demo_Age);
+rsvp_task.push(demo_gen);
+rsvp_task.push(demo_PolIQ);
+rsvp_task.push(demo_FinalQs);
+
+////////////////////////////////////////////////////////////////
+///* define debrief */
+
+var debrief = {
+      type: "html-keyboard-response",
+      stimulus: "<p>Thank you for your participation!</p>" + 
+      "<p>Some things.",
+      post_trial_gap: 2000
+    };
+    tl.push(debrief);
