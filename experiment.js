@@ -191,8 +191,8 @@ var instructionsGEN = {
 	stimulus: ['<div style="color:black;font-size:30px;line-height:1.5"> This experiment tests your memory about words. </p>' +
 		" <p> First, you will read a short passage and answer some questions.</p>"+ 
 		' <p> Then, you will be tested on your ability to remember two words that appear in <font color="green"><b>green</b></font>. We will begin with a practice trial. </p>' +
-		" <p><b>Please press the SPACE BAR to continue. </b></p></div>"],
-	choices: [" "],
+		" <p><b>Please press any key to continue. </b></p></div>"],
+	/*choices: ['space'],*/ 
 	data: {test_part: 'instructions'},
 	post_trial_gap: 1500
   };
@@ -211,8 +211,8 @@ var instructions_prac2 = {
 			  "<p>The real task is more challenging, as the words " +
 			  "will appear more rapidly.</p>" +
 			  "<p>You will have some time to practice before starting the test.</p>" +
-			  "<p>Press the SPACE BAR to begin the practice.</p></div>",
-	choices: ['space'],
+			  "<p>Press any key to begin the practice.</p></div>",
+	/*choices: ['space'],*/ 
 	data: {test_part: 'instructions'},
 	post_trial_gap: 1000
   };
