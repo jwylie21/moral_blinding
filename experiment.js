@@ -168,7 +168,6 @@ var cond_procedure2 = {
 var conditions = [cond_procedure1, cond_procedure2];
 var cond = jsPsych.randomization.sampleWithoutReplacement(conditions,1)[0];
 console.log('condition: ', cond);  // check console to see which condition was selected
-rsvp_task.push(cond);
 
 //////////////////////////////////////
 //////////////////////////////////////
@@ -273,15 +272,33 @@ var instructions_prac2 = {
 			  "the words appeared quite slowly.</p>" +
 			  "<p>The real task is more challenging, as the words " +
 			  "will appear more rapidly.</p>" +
-			  "<p>You will have some time to practice before starting the test.</p>" +
-			  "<p>Press any key to begin the practice.</p></div>",
+			  "<p>You will now read a short passage and then answer a question before beginning the main task. Please read the passage carefully and respond honestly.</p>" +
+			  "<p>Press any key to continue.</p></div>",
 	/*choices: ['space'],*/ 
 	data: {test_part: 'instructions'},
 	post_trial_gap: 1000
   };
 rsvp_task.push(instructions_prac2);
 
+
 // FIFTH SCREEN
+rsvp_task.push(cond);
+
+// SIXTH SCREEN
+var instructions_begin = {
+	type: "html-keyboard-response",
+	stimulus: "<div class='instructions'><p>Wow, well done. " +
+			  "</p>" +
+			  "<p> We will now begin the next block of the task. Remember, the words will appear VERY quickly. Make sure you are paying close attention." +
+			  "</p>" +
+			  "<p>Press any key to continue.</p>" +
+			  "<p></p></div>",
+	data: {test_part: 'instructions'},
+	post_trial_gap: 1000
+  };
+rsvp_task.push(instructions_begin);
+
+// SEVENTH SCREEN
 //Run a Fairness block
 blocklength = targetsFairness.length * 2
 lagvector = jsPsych.randomization.repeat([1,2], targetsFairness.length);
@@ -299,13 +316,13 @@ for (i = 0; i < blocklength; i++) {
 		}
 	}
 
-// SIXTH SCREEN
+// EIGHTH SCREEN
 // Instructions Intermezzo
 var instructions_inter1 = {
 	type: "html-keyboard-response",
 	stimulus: "<div class='instructions'><p>Wow, well done. " +
 			  "</p>" +
-			  "<p> Now an authority block." +
+			  "<p> We will now begin the next block of the task." +
 			  "</p>" +
 			  "<p></p>" +
 			  "<p></p></div>",
@@ -314,7 +331,7 @@ var instructions_inter1 = {
   };
 rsvp_task.push(instructions_inter1);
 
-// SEVENTH SCREEN
+// NINTH SCREEN
 //Run an authority block 
 blocklength = targetsAuthority.length * 2
 lagvector = jsPsych.randomization.repeat([1,2], targetsAuthority.length);
@@ -331,7 +348,7 @@ lagvector = jsPsych.randomization.repeat([1,2], targetsAuthority.length);
 		}
 	}
 
-// EIGHT SCREEN
+// TENTH SCREEN
 //Some final instructions
 var instructions_blockend = {
 	type: "html-keyboard-response",
