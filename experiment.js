@@ -186,7 +186,7 @@ var cond_procedure2 = {
 var conditions = [cond_procedure1, cond_procedure2];
 var cond = jsPsych.randomization.sampleWithoutReplacement(conditions,1)[0];
 console.log('condition: ', cond);  // check console to see which condition was selected
-rsvp_timeline.push(cond);
+rsvp_task.push(cond);
 
 //////////////////////////////////////
 //////////////////////////////////////
