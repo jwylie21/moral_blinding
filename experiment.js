@@ -1,5 +1,7 @@
 //Code adapted from paulsharpeY by Jordan Wylie & Dries Bostyn
 
+//TO DO: What is the lag logic? ; change choice keys to specific key; add questionnaires
+
 function getBrowserId () {
 	var browsers = ["MSIE", "Firefox", "Safari", "Chrome", "Opera"];
 	sUsrAg = window.navigator.userAgent,
@@ -36,7 +38,7 @@ var distractors = ['violate','alike','along','apply','asset','bunch','coast','dr
 	'hike','hint','icon','maze','novel','olive','pile','press','scale','shape','solid','suite','swing','tile','title', 
 	'walk','wave'];  //doublecheck to make sure this array is large enough!
 
-var practicewords = ['practiceword1','practiceword2']
+var practicewords = ['ocean','world']
 
 var targetsAuthority = ['Authority1','Authority2'];
 
@@ -287,7 +289,7 @@ rsvp_task.push(cond);
 // SIXTH SCREEN
 var instructions_begin = {
 	type: "html-keyboard-response",
-	stimulus: "<div class='instructions'><p>Wow, well done. " +
+	stimulus: "<div class='instructions'><p>Great! " +
 			  "</p>" +
 			  "<p> We will now begin the next block of the task. Remember, the words will appear VERY quickly. Make sure you are paying close attention." +
 			  "</p>" +
