@@ -1,8 +1,35 @@
 //Code adapted from paulsharpeY by Jordan Wylie & Dries Bostyn
 
+function getBrowserId () {
+	var browsers = ["MSIE", "Firefox", "Safari", "Chrome", "Opera"];
+	sUsrAg = window.navigator.userAgent,
+	nIdx = browsers.length - 1;
+	for (nIdx; nIdx > -1 && sUsrAg.indexOf(browsers [nIdx]) === -1; nIdx--);
+ 
+  return browsers[nIdx];
+}
+
+var OS = window.navigator.platform;
+var browser = getBrowserId();
+
+// var pavloviaInfo; 
+
+var subject_id = jsPsych.randomization.randomID(15);
+
 //Create the main timeline
 var rsvp_task = []; // main timeline
 
+/* init connection with pavlovia.org */
+// var pavlovia_init = {
+//   type: "pavlovia",
+//   command: "init",
+		// Store info received by Pavlovia init into the global variable `pavloviaInfo`
+//   setPavloviaInfo: function (info) {
+// 	  console.log(info);
+// 	  pavloviaInfo = info;
+// 	}
+// };
+// rsvp_task.push(pavlovia_init);
 
 //Set up all the necessary words
 var distractors = ['violate','alike','along','apply','asset','bunch','coast','drum','even','foam','focus','form', 
@@ -25,6 +52,15 @@ var targetsFairness = ['behind their back','biased'/*,'bigoted','bilking','black
 var targetsFairness2 = targetsFairness
 var targetsAuthority2 = targetsAuthority
 
+var BLM = "On May 25, 2020, the final moments of African-American man George Floyd were captured on film. In the video, Minneapolis Officer Derek Chauvin can be seen kneeling on George’s neck for a prolonged period of time. The footage was subsequently circulated on social media, re-igniting unresolved tension surrounding [the treatment of people of color] in the United States. The viral footage resulted in widespread public outcry throughout the United States. As a result of his actions, Derek Chauvin was dismissed from his position, and recently found guilty of murder."
+var COVID = "In early 2020 the COVID-19 pandemic swept across the world, resulting in significant loss of life. To make matters worse, many Americans have lost their jobs and livelihoods as a result of the pandemic. To slow the spread of the virus, the CDC has recommended that people get the COVID-19 vaccine. Some locations have made getting the vaccine mandatory. Despite the risk of spreading the virus, many people still choose not to get the COVID-19 vaccine."
+
+var manip = {
+	type: 'survey-text',
+	questions: [
+	  {prompt: "In your own words, do you feel that the prosecution of Derek Chauvin was appropriate? Why or why not?", rows: 5, columns: 40}
+	],
+  };
 
 // stimuli definitions
 //Change this to change inter trial interval 
@@ -109,6 +145,44 @@ function rsvp_trial(o) {
 	return({stimuli: stimuli, targets: target[0]});
 }
 
+//////////////////////////////////////
+//* Set up conditions */
+//////////////////////////////////////
+
+//* Between Cond 1 = ΝΟ LABEL
+var cond1 = {
+	type: 'html-keyboard-response',
+	stimulus: jsPsych.timelineVariable('BLM'),
+	choices: jsPsych.NO_KEYS,
+	trial_duration: 5000
+  };
+var cond_procedure1 = {
+timeline: [cond1, manip],
+timeline_variables: BLM, 
+randomize_order: true 
+};
+
+//* Between Cond 2 = LABEL
+var cond2 = {
+	type: 'html-keyboard-response',
+	stimulus: jsPsych.timelineVariable('COVID'),
+	choices: jsPsych.NO_KEYS,
+	trial_duration: 5000
+  };
+
+var cond_procedure2 = {
+  timeline: [cond2, manip],
+  timeline_variables: COVID,
+  randomize_order: true
+};
+
+var conditions = [cond_procedure1, cond_procedure2];
+var cond = jsPsych.randomization.sampleWithoutReplacement(conditions,1)[0];
+console.log('condition: ', cond);  // check console to see which condition was selected
+rsvp_timeline.push(cond);
+
+//////////////////////////////////////
+//////////////////////////////////////
 
 // This runs the actual trial
 function make_rsvp_timeline(trials, phase) {
