@@ -52,20 +52,20 @@ var targetsFairness = ['behind their back','biased'/*,'bigoted','bilking','black
 var targetsFairness2 = targetsFairness
 var targetsAuthority2 = targetsAuthority
 
-var BLM = ["On May 25, 2020, the final moments of African-American man George Floyd were captured on film. In the video, Minneapolis Officer Derek Chauvin can be seen kneeling on George’s neck for a prolonged period of time. The footage was subsequently circulated on social media, re-igniting unresolved tension surrounding [the treatment of people of color] in the United States. The viral footage resulted in widespread public outcry throughout the United States. As a result of his actions, Derek Chauvin was dismissed from his position, and recently found guilty of murder."]
-var COVID = ["In early 2020 the COVID-19 pandemic swept across the world, resulting in significant loss of life. To make matters worse, many Americans have lost their jobs and livelihoods as a result of the pandemic. To slow the spread of the virus, the CDC has recommended that people get the COVID-19 vaccine. Some locations have made getting the vaccine mandatory. Despite the risk of spreading the virus, many people still choose not to get the COVID-19 vaccine."]
+//var BLM = ["On May 25, 2020, the final moments of African-American man George Floyd were captured on film. In the video, Minneapolis Officer Derek Chauvin can be seen kneeling on George’s neck for a prolonged period of time. The footage was subsequently circulated on social media, re-igniting unresolved tension surrounding [the treatment of people of color] in the United States. The viral footage resulted in widespread public outcry throughout the United States. As a result of his actions, Derek Chauvin was dismissed from his position, and recently found guilty of murder."]
+//var COVID = ["In early 2020 the COVID-19 pandemic swept across the world, resulting in significant loss of life. To make matters worse, many Americans have lost their jobs and livelihoods as a result of the pandemic. To slow the spread of the virus, the CDC has recommended that people get the COVID-19 vaccine. Some locations have made getting the vaccine mandatory. Despite the risk of spreading the virus, many people still choose not to get the COVID-19 vaccine."]
 
 var manip1 = {
 	type: 'survey-text',
 	questions: [
-	  {prompt: "In your own words, do you feel that the prosecution of Derek Chauvin was appropriate? Why or why not?", rows: 5, columns: 40}
+	  {prompt: "On May 25, 2020, the final moments of African-American man George Floyd were captured on film. In the video, Minneapolis Officer Derek Chauvin can be seen kneeling on George’s neck for a prolonged period of time. The footage was subsequently circulated on social media, re-igniting unresolved tension surrounding [the treatment of people of color] in the United States. The viral footage resulted in widespread public outcry throughout the United States. As a result of his actions, Derek Chauvin was dismissed from his position, and recently found guilty of murder. <p>In your own words, do you feel that the prosecution of Derek Chauvin was appropriate? Why or why not?</p>", rows: 5, columns: 40}
 	],
   };
 
 var manip2 = {
 	type: 'survey-text',
 	questions: [
-	  {prompt: "In your own words, do you think it would be appropriate for the United States to make receiving the COVID-19 vaccine mandatory? Why or why not?", rows: 5, columns: 40}
+	  {prompt: "In early 2020 the COVID-19 pandemic swept across the world, resulting in significant loss of life. To make matters worse, many Americans have lost their jobs and livelihoods as a result of the pandemic. To slow the spread of the virus, the CDC has recommended that people get the COVID-19 vaccine. Some locations have made getting the vaccine mandatory. Despite the risk of spreading the virus, many people still choose not to get the COVID-19 vaccine. <p>In your own words, do you think it would be appropriate for the United States to make receiving the COVID-19 vaccine mandatory? Why or why not?</p>", rows: 5, columns: 40}
 	],
   };  
 
@@ -157,28 +157,29 @@ function rsvp_trial(o) {
 //////////////////////////////////////
 
 //* Between Cond 1 = ΝΟ LABEL
-var cond1 = {
-	type: 'html-keyboard-response',
-	stimulus: BLM,
-	choices: jsPsych.NO_KEYS,
-	trial_duration: 5000
-  };
+//var cond1 = {
+//	type: 'html-keyboard-response',
+//	stimulus: BLM,
+//	choices: jsPsych.NO_KEYS,
+//	trial_duration: 5000
+// };
+
 var cond_procedure1 = {
-timeline: [cond1, manip1],
+timeline: [manip1],
 timeline_variables: BLM, 
 randomize_order: false 
 };
 
 //* Between Cond 2 = LABEL
-var cond2 = {
-	type: 'html-keyboard-response',
-	stimulus: COVID,
-	choices: jsPsych.NO_KEYS,
-	trial_duration: 5000
-  };
+//var cond2 = {
+//	type: 'html-keyboard-response',
+//	stimulus: COVID,
+//	choices: jsPsych.NO_KEYS,
+//	trial_duration: 5000
+//  };
 
 var cond_procedure2 = {
-  timeline: [cond2, manip2],
+  timeline: [manip2],
   timeline_variables: COVID,
   randomize_order: false
 };
