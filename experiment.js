@@ -159,7 +159,7 @@ function rsvp_trial(o) {
 //* Between Cond 1 = ΝΟ LABEL
 var cond1 = {
 	type: 'html-keyboard-response',
-	stimulus: jsPsych.timelineVariable('BLM'),
+	stimulus: BLM,
 	choices: jsPsych.NO_KEYS,
 	trial_duration: 5000
   };
@@ -172,7 +172,7 @@ randomize_order: false
 //* Between Cond 2 = LABEL
 var cond2 = {
 	type: 'html-keyboard-response',
-	stimulus: jsPsych.timelineVariable('COVID'),
+	stimulus: COVID,
 	choices: jsPsych.NO_KEYS,
 	trial_duration: 5000
   };
