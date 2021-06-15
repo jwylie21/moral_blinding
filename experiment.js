@@ -166,7 +166,7 @@ function rsvp_trial(o) {
 
 var cond_procedure1 = {
 timeline: [manip1],
-timeline_variables: BLM, 
+//timeline_variables: BLM, 
 randomize_order: false 
 };
 
@@ -180,7 +180,7 @@ randomize_order: false
 
 var cond_procedure2 = {
   timeline: [manip2],
-  timeline_variables: COVID,
+//  timeline_variables: COVID,
   randomize_order: false
 };
 
