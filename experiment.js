@@ -370,7 +370,110 @@ var Incomeq = ["Less than $10,000 USD a year", "$10,000 - $20,000 USD", "$20,000
 var Raceq = ["White, not hispanic or latinx", "Black or African American", "Asian", "American Indian or Alaska Native", "Native Hawaiian or Other Pacific Islander", "Hispanic or Latinx", "Two or more", "Not listed"];
 var Demand1q = ["Not at all", " ", " ", " ", "Very much so"];
 var compTypeq = ["Laptop/Desktop", "Ipad/Tablet", "Other"];
+var MFQq = ["Not at all relevant", "Not very relevant", "Slightly relevant", "Somewhat relevant", "Very relevant", "Extremely relevant"];
+var RWAq = ["Strongly disagree", "Disagree", "Somewhat disagree", "Neither agree nor disagree", "Somewhat agree", "Agree", "Strongly agree"];
+var SDOq = ["Strongly oppose", "Somewhat oppose", "Slightly oppose", "Neutral", "Slightly favor", "Somewhat favor", "Strongly favor"];
+var JSq = ["Totally disagree", " ", " ", " ", " ", " ", "Totally agree"];
+var MCq = ["Yes", "No"];
 
+
+var MFQ = {
+	type: 'survey-multi-choice',
+	questions: [
+		{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone suffered emotionally</p>', options: MFQq, required: true, horizontal: true,}, 
+		{prompt: '<p style="text-align: left;font-size:20px;">Whether or not some people were treated differently than others</p>', options: MFQq, required: true, horizontal: true},
+		{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someones action showed love for his or her country</p>', options: MFQq, required: true, horizontal: true,}, 
+		{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone showed a lack of respect for authority </p>', options: MFQq, required: true, horizontal: true},
+		{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone violated standards of purity and decency</p>', options: MFQq, required: true, horizontal: true,}, 
+		{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone was good at math</p>', options: MFQq, required: true, horizontal: true,}, 
+		{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone cared for someone weak or vulnerable</p>', options: MFQq, required: true, horizontal: true,}, 
+		{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone acted unfairly</p>', options: MFQq, required: true, horizontal: true,}, 
+		{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone did something to betray his or her group</p>', options: MFQq, required: true, horizontal: true,}, 
+		{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone conformed to the traditions of society</p>', options: MFQq, required: true, horizontal: true,}, 
+		{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone did something disgusting</p>', options: MFQq, required: true, horizontal: true,}, 
+		{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone was cruel/p>', options: MFQq, required: true, horizontal: true,}, 
+		{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone was denied his or her rights</p>', options: MFQq, required: true, horizontal: true,}, 
+		{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone showed a lack of loyaltyy</p>', options: MFQq, required: true, horizontal: true,}, 
+		{prompt: '<p style="text-align: left;font-size:20px;">Whether or not an action caused chaos or disorder</p>', options: MFQq, required: true, horizontal: true,}, 
+		{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone acted in a way that God would approve of</p>', options: MFQq, required: true, horizontal: true,}
+	  ],
+	randomize_question_order: true,
+	preamble: '<p style="text-align: left;font-size:28px;"When you decide whether something is right or wrong, to what extent are the following considerations relevant to your thinking? Please rate each statement using the scale provided.</p>'
+	};
+
+var MaC = {
+        type: 'survey-multi-choice',
+        questions: [
+            {prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone deferred to those in authority</p>', options: MFQq, required: true, horizontal: true,}, 
+            {prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone disobeyed orders</p>', options: MFQq, required: true, horizontal: true},
+            {prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone showed respect for authority</p>', options: MFQq, required: true, horizontal: true,}, 
+			{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone kept the best part for themselves</p>', options: MFQq, required: true, horizontal: true},
+			{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone showed favouritism</p>', options: MFQq, required: true, horizontal: true},
+            {prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone took more than others</p>', options: MFQq, required: true, horizontal: true},
+            {prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone vandalised another person’s property</p>', options: MFQq, required: true, horizontal: true},
+            {prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone kept something that didn’t belong to them</p>', options: MFQq, required: true, horizontal: true},
+            {prompt: '<p style="text-align: left;font-size:20px;">Whether or not someones property was damaged</p>', options: MFQq, required: true, horizontal: true}
+          ],
+        randomize_question_order: true,
+        preamble: '<p style="text-align: left;font-size:28px;"When you decide whether something is right or wrong, to what extent are the following considerations relevant to your thinking?</p>'
+		};
+
+var RWA = {
+			type: 'survey-multi-choice',
+			questions: [
+				{prompt: '<p style="text-align: left;font-size:20px;">It is great that many young people today are prepared to defy authority</p>', options: MFQq, required: true, horizontal: true,}, 
+				{prompt: '<p style="text-align: left;font-size:20px;">What our country needs most is discipline, with everyone following our leaders in unity</p>', options: MFQq, required: true, horizontal: true},
+				{prompt: '<p style="text-align: left;font-size:20px;">God’s laws about abortion, pornography, and marriage must be strictly followed before it is too late</p>', options: MFQq, required: true, horizontal: true,}, 
+				{prompt: '<p style="text-align: left;font-size:20px;">There is nothing wrong with premarital sexual intercourse</p>', options: MFQq, required: true, horizontal: true},
+				{prompt: '<p style="text-align: left;font-size:20px;">Our society does NOT need tougher government and stricter laws</p>', options: MFQq, required: true, horizontal: true},
+				{prompt: '<p style="text-align: left;font-size:20px;">The facts on crime and the recent public disorders show we have to crack down harder on troublemakers, if we are going to preserve law and order</p>', options: MFQq, required: true, horizontal: true}
+			  ],
+			randomize_question_order: true,
+			preamble: '<p style="text-align: left;font-size:28px;"To what extent do you disagree or agree with each of the following statements?</p>'
+			};
+
+var SDO = {
+		type: 'survey-multi-choice',
+		questions: [
+			{prompt: '<p style="text-align: left;font-size:20px;">An ideal society requires some groups to be on top and others to be on the bottom</p>', options: SDOq, required: true, horizontal: true,}, 
+			{prompt: '<p style="text-align: left;font-size:20px;">Some groups of people are simply inferior to other groups</p>', options: SDOq, required: true, horizontal: true},
+			{prompt: '<p style="text-align: left;font-size:20px;">No one group should dominate in society</p>', options: SDOq, required: true, horizontal: true,}, 
+			{prompt: '<p style="text-align: left;font-size:20px;">Groups at the bottom are just as deserving as groups at the top</p>', options: SDOq, required: true, horizontal: true},
+			{prompt: '<p style="text-align: left;font-size:20px;">Group equality should not be our primary goal</p>', options: SDOq, required: true, horizontal: true},
+			{prompt: '<p style="text-align: left;font-size:20px;">It is unjust to try to make groups equal</p>', options: SDOq, required: true, horizontal: true},
+			{prompt: '<p style="text-align: left;font-size:20px;">We should do what we can to equalize conditions for different groups</p>', options: SDOq, required: true, horizontal: true},
+			{prompt: '<p style="text-align: left;font-size:20px;">We should work to give all groups an equal chance to succeed</p>', options: SDOq, required: true, horizontal: true}		  
+		],
+		randomize_question_order: true,
+		preamble: '<p style="text-align: left;font-size:28px;"Show how much you favor or oppose each idea below. You can work quickly; your first feeling is generally best.</p>'
+		};
+
+var JS = {
+	type: 'survey-multi-choice',
+		questions: [
+			{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone deferred to those in authority</p>', options: JSq, required: true, horizontal: true,}, 
+			{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone disobeyed orders</p>', options: JSq, required: true, horizontal: true},
+			{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone showed respect for authority</p>', options: JSq, required: true, horizontal: true,}, 
+			{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone kept the best part for themselves</p>', options: JSq, required: true, horizontal: true},
+			{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone showed favouritism</p>', options: JSq, required: true, horizontal: true},
+			{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone took more than others</p>', options: JSq, required: true, horizontal: true},
+			{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone vandalised another person’s property</p>', options: JSq, required: true, horizontal: true},
+			{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone kept something that didn’t belong to them</p>', options: JSq, required: true, horizontal: true}
+		  ],
+		randomize_question_order: true,
+		preamble: '<p style="text-align: left;font-size:28px;"When you decide whether something is right or wrong, to what extent are the following considerations relevant to your thinking?</p>'
+		};
+
+var ManipCheck = {
+			type: 'survey-multi-choice',
+			questions: [
+				{prompt: '<p style="text-align: left;font-size:20px;">In your personal opinion and from your understanding of current events, are you generally in support of the Black Lives Matter movement?</p>', options: MCq, required: true, horizontal: true,}, 
+				{prompt: '<p style="text-align: left;font-size:20px;">In your personal opinion and from your understanding of current events, are you generally in support of a vaccine mandate?</p>', options: MCq, required: true, horizontal: true}
+			],
+			randomize_question_order: true,
+			preamble: '<p style="text-align: left;font-size:28px;"Please answer the following questions about your views on current issues.</p>'
+			};
+					
 var demo_Age = {
         type: 'survey-text',
         questions: [
@@ -391,6 +494,7 @@ var demo_gen = {
         randomize_question_order: true,
         preamble: '<p style="text-align: left;font-size:28px;"Using the scales provided, please respond to each question about you as an individual.</p>'
         };
+
 
 var demo_PolIQ = {
         type: 'survey-multi-choice',
@@ -415,6 +519,12 @@ var demo_FinalQs = {
         };
 
 //////////////////////////////////////////////////////////////
+rsvp_task.push(MFQ);
+rsvp_task.push(MaC);
+rsvp_task.push(RWA);
+rsvp_task.push(SDO);
+//rsvp_task.push(JS);
+rsvp_task.push(ManipCheck);
 rsvp_task.push(demo_Age);
 rsvp_task.push(demo_gen);
 rsvp_task.push(demo_PolIQ);
