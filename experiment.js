@@ -1,6 +1,6 @@
 //Code adapted from paulsharpeY by Jordan Wylie & Dries Bostyn
 
-//TO DO: What is the lag logic? ; change choice keys to specific key; add questionnaires
+//TO DO: What is the lag logic? ; change choice keys to specific key; add questionnaires; make sure there is randomization of authority/fairness and log it
 
 function getBrowserId () {
 	var browsers = ["MSIE", "Firefox", "Safari", "Chrome", "Opera"];
@@ -15,6 +15,12 @@ var OS = window.navigator.platform;
 var browser = getBrowserId();
 
 // var pavloviaInfo; 
+
+//var surveyCode = jsPsych.data.getURLVariable('participant');
+//if (!surveyCode) {
+//    surveyCode = 'test'
+//}
+//console.log(surveyCode)
 
 var subject_id = jsPsych.randomization.randomID(15);
 
@@ -151,6 +157,32 @@ function rsvp_trial(o) {
 	return({stimuli: stimuli, targets: target[0]});
 }
 
+// Set up the consent
+var consentform = {
+    type: 'html-button-response',
+    stimulus: '<p>Please read the following and press the button at the bottom of the screen to begin.</p><p></p>' + 
+    '<p><h1><strong>CONSENT FORM</strong></h1></p><p></p>' + 
+    '<div align=left>' +
+	'<p><strong>Title of Study:</strong><br />Judgments of Mind and Moral Decision Making (12-11585)</p>'+ 
+	'<p>Faculty Advisor: Kurt Gray; kurtgray@email.unc.edu</p>' + 
+    '<p><strong>What are some general things you should know about research studies? </strong><br />You are being asked to take part in a research study. To join the study is voluntary. You may refuse to join, or you may withdraw your consent to be in the study, for any reason, without penalty. Details about this study are discussed below. It is important that you understand this information so that you can make an informed choice about being in this research study.</p>' + 
+	'<p><strong>What is the purpose of this study? </strong><br />The purpose of this study is to explore moral judgments.</p>' + 
+	'<p><strong>How many people will take part in this study? </strong><br />If you decide to be in this study, you will be one of approximately 300 people in this research study.</p>' + 
+	'<p><strong>What will happen if you take part in the study? </strong><br />Your part in this study will last for approximately 30 minutes. The procedures involve completing a judgment task on the computer. In this task, you will be presented with a variety of stimuli and will be asked to make a judgment about these stimuli. You might be asked to remember what you saw, categorize different words, or answer questions about the stimuli.</p>' + 
+	'<p><strong>What are the possible benefits from being in this study? </strong><br />This research is not designed to help you personally, but the results may help the investigators and future researchers to learn more about how people perceive the minds of others and whether those perceptions influence moral decisions.</p>' + 
+	'<p><strong>What are the possible risks or discomforts involved from being in this study? </strong><br />There may be some risks from participating in this research study. For instance, on rare occurrences some participants may experience some discomfort with the subject matter of the study.</p>' + 
+    '<p><strong>How will your privacy be protected?</strong><br />All of the data you provide will be stored anonymously. </p>' + 
+    '<p><strong>What if you want to stop before your part in the study is complete?</strong><br />You can withdraw from this study at any time, without penalty and skip any question for any reason. The investigators also have the right to stop your participation if you have an unexpected reaction, have failed to follow instructions, etc.</p>' + 
+	'<p><strong>Will you receive anything for being in this study? </strong><br />Depending on the length and difficulty of the study, you will receive anywhere from $.01 to $4.00 for participating in the study. While all legitimate participants will be paid, those identified as coming from server farms - based on GPS identification and a series of attention checks - will not be paid. There are no costs associated with being in the study.  </p>' + 
+    '<p><strong>What if you have questions about this study? </strong><br />You have the right to ask, and have answered, any questions you may have about this research. Contact the principal investigator listed above with any questions, complaints, or concerns you may have.</p>' + 
+    "<p><strong>What if you have questions about your rights as a research participant?</strong><br />All research on human volunteers is reviewed by a committee that works to protect your rights and welfare. If you have questions or concerns, or if you would like to obtain information or offer input, please contact the Institutional Review Board at 919-966-3113 or by email to IRB_subjects@unc.edu. </p>" + 
+    '<p><strong>Thank you for considering participation in this study.</strong><br />Please contact Lindsay Hahn at lhahn2@buffalo.edu, if further information is required.</p>' + 
+    '</div><p></p>',
+    choices: ['I CONSENT TO PARTICIPATE IN THIS STUDY AND AM AT LEAST 18 YEARS OF AGE'],
+    prompt: "<p><small>Click this button to continue, or close this page to exit.</small></p><p></p>",
+    data: {stimulus: 'consentform'},
+};
+
 //////////////////////////////////////
 //* Set up conditions */
 //////////////////////////////////////
@@ -248,6 +280,8 @@ rsvp_task.push({
   fullscreen_mode: true
 });
 
+rsvp_task.push(consentform);
+
 // SECOND SCREEN
 // First instructions
 var instructionsGEN = {
@@ -285,6 +319,16 @@ rsvp_task.push(instructions_prac2);
 
 // FIFTH SCREEN
 rsvp_task.push(cond);
+
+/* add the subject ID to my experiment  making it a property*/
+//jsPsych.data.addProperties({
+//	subject: subject_id,
+//	survey: surveyCode,
+//	condition: cond,
+//	brwser: browser,
+//	operatingS: OS,
+//	order: shuffledList  //what will this be to get the order of the fairness vs. authority
+//  });
 
 // SIXTH SCREEN
 var instructions_begin = {
@@ -473,7 +517,7 @@ var ManipCheck = {
 			randomize_question_order: true,
 			preamble: '<p style="text-align: left;font-size:28px;"Please answer the following questions about your views on current issues.</p>'
 			};
-					
+
 var demo_Age = {
         type: 'survey-text',
         questions: [
@@ -540,6 +584,30 @@ var debrief = {
       post_trial_gap: 2000
     };
 rsvp_task.push(debrief);
+
+////////////////////////////////////////////////////////////////
+//var finishURL = 'https://lab-abs.sona-systems.com/webstudy_credit.aspx?experiment_id=121&credit_token=3d92554c77d2452da04ffd124b217305&survey_code=' + surveyCode;
+
+/* finish connection with pavlovia.org */
+//var pavlovia_finish = {
+//	type: "pavlovia",
+//	command: "finish",
+//	participantId: surveyCode,
+//	  // Thomas Pronk; your filter function here
+//	  dataFilter: function(data) {
+//			// Printing the data received from jsPsych.data.get().csv(); a CSV data structure
+//			console.log(data);
+//			// You can also access the data directly, for instance getting it as JSON
+//			console.log(jsPsych.data.get().csv());
+//			// Return whatever data you'd like to store
+//			return data;
+//		},
+//		// Thomas Pronk; call this function when we're done with the experiment and data reception has been confirmed by Pavlovia
+//		completedCallback: function() {
+//		  window.location.replace(finishURL);
+//		}
+//	};
+//  rsvp_task.push(pavlovia_finish);
 
 ////////////////////////////////////////////////////////////////
 jsPsych.init({
