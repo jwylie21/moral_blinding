@@ -424,25 +424,25 @@ var MCq = ["Yes", "No"];
 var MFQ = {
 	type: 'survey-multi-choice',
 	questions: [
-		{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone suffered emotionally</p>', options: MFQq, required: true, horizontal: true,}, 
-		{prompt: '<p style="text-align: left;font-size:20px;">Whether or not some people were treated differently than others</p>', options: MFQq, required: true, horizontal: true},
-		{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someones action showed love for his or her country</p>', options: MFQq, required: true, horizontal: true,}, 
-		{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone showed a lack of respect for authority </p>', options: MFQq, required: true, horizontal: true},
-		{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone violated standards of purity and decency</p>', options: MFQq, required: true, horizontal: true,}, 
-		{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone was good at math</p>', options: MFQq, required: true, horizontal: true,}, 
-		{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone cared for someone weak or vulnerable</p>', options: MFQq, required: true, horizontal: true,}, 
-		{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone acted unfairly</p>', options: MFQq, required: true, horizontal: true,}, 
-		{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone did something to betray his or her group</p>', options: MFQq, required: true, horizontal: true,}, 
-		{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone conformed to the traditions of society</p>', options: MFQq, required: true, horizontal: true,}, 
-		{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone did something disgusting</p>', options: MFQq, required: true, horizontal: true,}, 
-		{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone was cruel/p>', options: MFQq, required: true, horizontal: true,}, 
-		{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone was denied his or her rights</p>', options: MFQq, required: true, horizontal: true,}, 
-		{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone showed a lack of loyaltyy</p>', options: MFQq, required: true, horizontal: true,}, 
-		{prompt: '<p style="text-align: left;font-size:20px;">Whether or not an action caused chaos or disorder</p>', options: MFQq, required: true, horizontal: true,}, 
-		{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone acted in a way that God would approve of</p>', options: MFQq, required: true, horizontal: true,}
+		{prompt: 'Whether or not someone suffered emotionally', options: MFQq, required: true, horizontal: true,}, 
+		{prompt: 'Whether or not some people were treated differently than others', options: MFQq, required: true, horizontal: true},
+		{prompt: 'Whether or not someones action showed love for his or her country', options: MFQq, required: true, horizontal: true,}, 
+		{prompt: 'Whether or not someone showed a lack of respect for authority', options: MFQq, required: true, horizontal: true},
+		{prompt: 'Whether or not someone violated standards of purity and decency', options: MFQq, required: true, horizontal: true,}, 
+		{prompt: 'Whether or not someone was good at math', options: MFQq, required: true, horizontal: true,}, 
+		{prompt: 'Whether or not someone cared for someone weak or vulnerable', options: MFQq, required: true, horizontal: true,}, 
+		{prompt: 'Whether or not someone acted unfairly', options: MFQq, required: true, horizontal: true,}, 
+		{prompt: 'Whether or not someone did something to betray his or her group', options: MFQq, required: true, horizontal: true,}, 
+		{prompt: 'Whether or not someone conformed to the traditions of society', options: MFQq, required: true, horizontal: true,}, 
+		{prompt: 'Whether or not someone did something disgusting', options: MFQq, required: true, horizontal: true,}, 
+		{prompt: 'Whether or not someone was cruel', options: MFQq, required: true, horizontal: true,}, 
+		{prompt: 'Whether or not someone was denied his or her rights', options: MFQq, required: true, horizontal: true,}, 
+		{prompt: 'Whether or not someone showed a lack of loyalty', options: MFQq, required: true, horizontal: true,}, 
+		{prompt: 'Whether or not an action caused chaos or disorder', options: MFQq, required: true, horizontal: true,}, 
+		{prompt: 'Whether or not someone acted in a way that God would approve of', options: MFQq, required: true, horizontal: true,}
 	  ],
 	randomize_question_order: true,
-	preamble: '<p style="text-align: left;font-size:28px;"When you decide whether something is right or wrong, to what extent are the following considerations relevant to your thinking? Please rate each statement using the scale provided.</p>'
+	preamble: 'When you decide whether something is right or wrong, to what extent are the following considerations relevant to your thinking? Please rate each statement using the scale provided.'
 	};
 
 var MaC = {
