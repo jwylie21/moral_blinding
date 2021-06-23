@@ -419,10 +419,15 @@ rsvp_task.push(instructions_blockend);
 ////////////////////////////////////////////////////////////////
 var Genderq = ["Man", "Woman", "Non-binary", "Other", "Prefer not to answer"];
 var PolIDq = ["Extremely Liberal", " ", " ", " Neither", " ", " ", "Extremely Conservative"];
+var PolID2q = ["Democrat", "Republican", "Independent", " Libertarian", "Other", "No Preference"];
+var PolID3q = ["Not at all", " ", " ", " ", " ", " ", "Extremely Important"];
+var PolID4q = ["Very Cold", " ", " ", " ", " ", " ", "Very Warm"];
 var Relq = ["Not at all Religious", " ", " ", " ", " ", " ", "Extremely Religious"];
 var Incomeq = ["Less than $10,000 USD a year", "$10,000 - $20,000 USD", "$20,000-$40,000 USD", "$40,000-$60,000 USD", "$60,000-$80,000 USD", "$80,000-$100,000 USD", "$100,000 USD a year or more"];
 var Raceq = ["White, not hispanic or latinx", "Black or African American", "Asian", "American Indian or Alaska Native", "Native Hawaiian or Other Pacific Islander", "Hispanic or Latinx", "Two or more", "Not listed"];
 var Demand1q = ["Not at all", " ", " ", " ", "Very much so"];
+var Demand2q = ["No I did not pay close attention", " ", " ", " ", "Yes I did pay close attention"];
+var Demand3q = ["Do not use my data", " ", " ", " ", "Definitely use my data"];
 var compTypeq = ["Laptop/Desktop", "Ipad/Tablet", "Other"];
 var MFQq = ["Not at all relevant", "Not very relevant", "Slightly relevant", "Somewhat relevant", "Very relevant", "Extremely relevant"];
 var RWAq = ["Strongly disagree", "Disagree", "Somewhat disagree", "Neither agree nor disagree", "Somewhat agree", "Agree", "Strongly agree"];
@@ -502,20 +507,44 @@ var SDO = {
 		preamble: '<p style="text-align: left;font-size:28px;"Show how much you favor or oppose each idea below. You can work quickly; your first feeling is generally best.</p>'
 		};
 
-var JS = {
+var JS1 = {
 	type: 'survey-multi-choice',
 		questions: [
-			{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone deferred to those in authority</p>', options: JSq, required: true, horizontal: true,}, 
-			{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone disobeyed orders</p>', options: JSq, required: true, horizontal: true},
-			{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone showed respect for authority</p>', options: JSq, required: true, horizontal: true,}, 
-			{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone kept the best part for themselves</p>', options: JSq, required: true, horizontal: true},
-			{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone showed favouritism</p>', options: JSq, required: true, horizontal: true},
-			{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone took more than others</p>', options: JSq, required: true, horizontal: true},
-			{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone vandalised another person’s property</p>', options: JSq, required: true, horizontal: true},
-			{prompt: '<p style="text-align: left;font-size:20px;">Whether or not someone kept something that didn’t belong to them</p>', options: JSq, required: true, horizontal: true}
+			{prompt: '<p style="text-align: left;font-size:20px;">It makes me angry when others are undeservingly better off than me.</p>', options: JSq, required: true, horizontal: true,}, 
+			{prompt: '<p style="text-align: left;font-size:20px;">It worries me when I have to work hard for things that come easily to others.</p>', options: JSq, required: true, horizontal: true}
 		  ],
 		randomize_question_order: true,
-		preamble: '<p style="text-align: left;font-size:28px;"When you decide whether something is right or wrong, to what extent are the following considerations relevant to your thinking?</p>'
+		preamble: '<p style="text-align: left;font-size:28px;"People react quite differently in unfair situations. How about you? First, we will look at situations to the advantage of others and to your own disadvantage.</p>'
+		};
+
+var JS2 = {
+	type: 'survey-multi-choice',
+		questions: [
+			{prompt: '<p style="text-align: left;font-size:20px;">I am upset when someone is undeservingly worse off than others.</p>', options: JSq, required: true, horizontal: true,}, 
+			{prompt: '<p style="text-align: left;font-size:20px;">It worries me when someone has to work hard for things that come easily to others.</p>', options: JSq, required: true, horizontal: true}
+		  ],
+		randomize_question_order: true,
+		preamble: '<p style="text-align: left;font-size:28px;"Now, we will look at situations in which you notice or learn that someone else is being treated unfairly, put a disadvantage, or used.</p>'
+		}
+
+var JS3 = {
+	type: 'survey-multi-choice',
+		questions: [
+			{prompt: '<p style="text-align: left;font-size:20px;">I feel guilty when I am better off than others for no reason.</p>', options: JSq, required: true, horizontal: true,}, 
+			{prompt: '<p style="text-align: left;font-size:20px;">It bothers me when things come easily to me that others have to work hard for.</p>', options: JSq, required: true, horizontal: true}
+		  ],
+		randomize_question_order: true,
+		preamble: '<p style="text-align: left;font-size:28px;"Now we will look at situations that turn out to your advantage and to the disadvantage of others.</p>'
+		};
+		
+var JS4 = {
+	type: 'survey-multi-choice',
+		questions: [
+			{prompt: '<p style="text-align: left;font-size:20px;">It makes me angry when others are undeservingly better off than me.</p>', options: JSq, required: true, horizontal: true,}, 
+			{prompt: '<p style="text-align: left;font-size:20px;">It worries me when I have to work hard for things that come easily to others.</p>', options: JSq, required: true, horizontal: true}
+		  ],
+		randomize_question_order: true,
+		preamble: '<p style="text-align: left;font-size:28px;"Finally, we will look at situations in which you treat someone else unfairly, discriminate against someone, or exploit someone.</p>'
 		};
 
 var ManipCheck = {
@@ -555,18 +584,34 @@ var demo_PolIQ = {
         questions: [
             {prompt: '<p style="text-align: left;font-size:20px;">Which response best captures your political beliefs surrounding economic issues?</p>', options: PolIDq, required: true, horizontal: true,}, 
             {prompt: '<p style="text-align: left;font-size:20px;">Which response best captures your political beliefs surrounding social issues?</p>', options: PolIDq, required: true, horizontal: true},
-            {prompt: '<p style="text-align: left;font-size:20px;">When it comes to overall political issues, you consider yourself to be a:</p>', options: PolIDq, required: true, horizontal: true,}
+			{prompt: '<p style="text-align: left;font-size:20px;">When it comes to overall political issues, you consider yourself to be a:</p>', options: PolIDq, required: true, horizontal: true,},
+			{prompt: '<p style="text-align: left;font-size:20px;"Generally speaking, do you usually think of yourself as a Republican, a Democrat, or something else?</p>', options: PolID2q, required: true, horizontal: true,},
+            {prompt: '<p style="text-align: left;font-size:20px;">How important is your affiliation with this political party to your personal identity?</p>', options: PolID3q, required: true, horizontal: true,}
+
         ],
         randomize_question_order: true,
         preamble: '<p style="text-align: left;font-size:28px;"Please answer the following questions about your political ideology.</p>'
-        };
+		};
+		
+var demo_Warm = {
+		type: 'survey-multi-choice',
+		questions: [
+			{prompt: '<p style="text-align: left;font-size:20px;">Republicans</p>', options: PolIDq, required: true, horizontal: true,}, 
+			{prompt: '<p style="text-align: left;font-size:20px;">Democrats</p>', options: PolIDq, required: true, horizontal: true},
+			{prompt: '<p style="text-align: left;font-size:20px;">Independents</p>', options: PolIDq, required: true, horizontal: true,}
+
+		],
+		randomize_question_order: true,
+		preamble: '<p style="text-align: left;font-size:28px;"Please indicate how cold (unfavorable) or warm (favorable) you feel toward each of the following groups.</p>'
+		};
 
 var demo_FinalQs = {
         type: 'survey-multi-choice',
         questions: [
             {prompt: '<p style="text-align: left;font-size:20px;">What kind of device did you use to complete this study?</p>', options: compTypeq, required: true, horizontal: true,}, 
             {prompt: '<p style="text-align: left;font-size:20px;">Did you feel pressure to respond in a particular way to any of the questions?</p>', options: Demand1q, required: true, horizontal: true,}, 
-            {prompt: '<p style="text-align: left;font-size:20px;">Did you feel as though you might be judged for your responses to the questions you answered.</p>', options: Demand1q, required: true, horizontal: true}        
+			{prompt: '<p style="text-align: left;font-size:20px;">Did you pay attention while completing this study?</p>', options: Demand2q, required: true, horizontal: true},
+			{prompt: '<p style="text-align: left;font-size:20px;">Do you think we should use your data?</p>', options: Demand3q, required: true, horizontal: true}                
           ],
         randomize_question_order: true,
         preamble: '<p style="text-align: left;font-size:28px;"For these final questions, please answer as honestly as you can! The answers to these questions will not affect whether or not you receive credit/payment for participation!</p>'
@@ -577,11 +622,15 @@ rsvp_task.push(MFQ);
 rsvp_task.push(MaC);
 rsvp_task.push(RWA);
 rsvp_task.push(SDO);
-//rsvp_task.push(JS);
+rsvp_task.push(JS1);
+rsvp_task.push(JS2);
+rsvp_task.push(JS3);
+rsvp_task.push(JS4);
 rsvp_task.push(ManipCheck);
 rsvp_task.push(demo_Age);
 rsvp_task.push(demo_gen);
 rsvp_task.push(demo_PolIQ);
+rsvp_task.push(demo_Warm);
 rsvp_task.push(demo_FinalQs);
 
 ////////////////////////////////////////////////////////////////
