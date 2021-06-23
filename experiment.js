@@ -40,21 +40,31 @@ var rsvp_task = []; // main timeline
 // rsvp_task.push(pavlovia_init);
 
 //Set up all the necessary words
-var distractors = ['violate','alike','along','apply','asset','bunch','coast','drum','even','foam','focus','form', 
-	'hike','hint','icon','maze','novel','olive','pile','press','scale','shape','solid','suite','swing','tile','title', 
-	'walk','wave'];  //doublecheck to make sure this array is large enough!
+var distractors = [	'coherent','composing','attracts','unleashed','pressing','muttering','whomever','newcomers','skydiving',
+'prescribe','succeeds','trousers','aerobics','thousands','backtrack','pipeline','silicone','matinees','paternity','windmill',
+'pacifier','beverage','sniffles','gradually','includes','umbrella','charcoal','requires','responses','requested','membrane',
+'arbitrary','gymnasium','incubator','flexible','attribute','uncertain','trombone','entwined','horseshoe','distract','channels',
+'resemble','detectors','vineyard','scribbled','particles','unplugged','spectator','delivers','potpourri','documents','sensation',
+'prologue','cornbread','carrying','maintains','somewhat','cupboards','appetite','clearing','uploading'	
+];  //doublecheck to make sure this array is large enough!
 
-var practicewords = ['ocean','world']
+var practicewords = ['ocean','world', 'planet', 'earth']
 
-var targetsAuthority = ['Authority1','Authority2'];
+var targetsAuthority = ['accuse','agitate','alienate','anarchist','banning','bedlam','chaotic','contempt','counter','defector','defying',
+'demonstrator','denounce','disarray','dishonorable','disobeying','disorder','disrespect','disruption','dissenting','dissident','flag',
+'fossil','heretical','illegal','impolite','insubordinate','insurgent','insurrection','intimidation','lawless','misrule','mutiny','nonconforming',
+'obstruct','oppose','orders','overpowering','overthrowing','pandemonium','protesting','rabble rousing','raising hell','rebelling','refusing',
+'remonstrate','renegades','resist','rioting','rock the boat','scheme','sedition','subverting','supremacy','transgression','trouble maker',
+'tumultuous','unauthorized','unlawfully','unruly','uprising','violate'
+];
 
-var targetsFairness = ['behind their back','biased'/*,'bigoted','bilking','blackmailing','chauvinists','cheating','con artist',
-'conniving','corrupt','crook','deception','defrauding','disadvantaged','discrimination','dishonest','disparity','disproportionate',
-'distrustful','double crossing','duplicitous','exclude','false advertising','false witness','favoritism','fleecing','fraudulent',
-'free rider','freeloading','hoodwinking','hypocrite','imbalance','imposters','inequality','inequity','injustice','lying',
-'mislead','misogyny','mooching','oppression','partiality','pickpocketing','plagiarize','prejudiced','restrictive','ripoff', 
-'robbed','scamming','segregating','sexism','shyster','steal','suckered','swindles','thieving','tricking','unequal',
-'unfair', 'uninsured','unjust','unscrupulous', 'untrustworthy'*/];
+var targetsFairness = ['behind their back','biased','bigoted','bilking','blackmailing','chauvinists','cheating','con artist','conniving',
+'corrupt','crook','deception','defrauding','disadvantaged','discrimination','dishonest','disparity','disproportionate','distrustful',
+'double crossing','duplicitous','exclude','false advertising','false witness','favoritism','fraudulent','free rider','freeloading',
+'hoodwinking','hypocrite','imbalance','imposters','inequality','inequity','injustice','lying','mislead','misogyny','mooching','oppression',
+'partiality','pickpocketing','plagiarize','prejudiced','restrictive','ripoff','robbed','scamming','segregating','sexism','shyster','steal',
+'suckered','swindles','thieving','tricking','unequal','unfair','uninsured','unjust','unscrupulous','untrustworthy'
+];
 
 // Copy the list of Moral words so that we can use a separate list for each of the two  lag locations 
 var targetsFairness2 = targetsFairness
