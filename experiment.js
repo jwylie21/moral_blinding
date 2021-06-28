@@ -1,6 +1,6 @@
 //Code adapted from paulsharpeY by Jordan Wylie & Dries Bostyn
 
-//TO DO: What is the lag logic? ; change choice keys to specific key; add questionnaires; make sure there is randomization of authority/fairness and log it
+//TO DO: What is the lag logic? ; change choice keys to specific key; make sure there is randomization of authority/fairness and log it
 
 function getBrowserId () {
 	var browsers = ["MSIE", "Firefox", "Safari", "Chrome", "Opera"];
@@ -298,7 +298,10 @@ var instructionsGEN = {
 	type: "html-keyboard-response",
 	stimulus: ['<div style="color:black;font-size:30px;line-height:1.5"> This experiment tests your memory about words. </p>' +
 		" <p> First, you will read a short passage and answer some questions.</p>"+ 
-		' <p> Then, you will be tested on your ability to remember two words that appear in <font color="green"><b>green</b></font>. We will begin with a practice trial. </p>' +
+		' <p> Then, you will be tested on your ability to remember the last two words that appear in <font color="green"><b>green</b></font> in a stream of words.' +
+		'</p> Occasionally, you will be prompted to write in the last two words you saw. It does not matter what order you type them in. Please separate the words by a comma. If you do not remember one or both of the words, you can type a 0 for each word you do not remember—again separated by a comma.</p>' +
+		'</p> Before each stream of words begins, you will see a + on the screen. Please look directly at the + so that you are ready when the words begin to show. </p>' +
+		'</p> We will begin with a practice trial. </p>' +
 		" <p><b>Please press any key to continue. </b></p></div>"],
 	/*choices: ['space'],*/ 
 	data: {test_part: 'instructions'},
@@ -318,6 +321,7 @@ var instructions_prac2 = {
 			  "the words appeared quite slowly.</p>" +
 			  "<p>The real task is more challenging, as the words " +
 			  "will appear more rapidly.</p>" +
+			  '<p>Remember, you should type in the last two words that appeared in <font color="green"><b>green</b>, separated by a comma. Type a 0 for any words you do not remember. </p>' +
 			  "<p>You will now read a short passage and then answer a question before beginning the main task. Please read the passage carefully and respond honestly.</p>" +
 			  "<p>Press any key to continue.</p></div>",
 	/*choices: ['space'],*/ 
@@ -345,7 +349,7 @@ var instructions_begin = {
 	type: "html-keyboard-response",
 	stimulus: "<div class='instructions'><p>Great! " +
 			  "</p>" +
-			  "<p> We will now begin the next block of the task. Remember, the words will appear VERY quickly. Make sure you are paying close attention." +
+			  "<p> We will now begin the next block of the task. Remember, the words will appear VERY quickly! Make sure you are paying close attention." +
 			  "</p>" +
 			  "<p>Press any key to continue.</p>" +
 			  "<p></p></div>",
