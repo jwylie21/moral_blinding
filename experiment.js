@@ -58,7 +58,7 @@ var targetsAuthority = ['accuse','agitate','alienate','anarchist','banning','bed
 'tumultuous','unauthorized','unlawfully','unruly','uprising','violate'
 ];
 
-var targetsFairness = ['behind their back','biased','bigoted','bilking','blackmailing','chauvinists','cheating','con artist','conniving',
+var targetsFairness = ['behind their back','biased','bigoted','bilking','blackmailing','chauvinists','cheating','con-artist','conniving',
 'corrupt','crook','deception','defrauding','disadvantaged','discrimination','dishonest','disparity','disproportionate','distrustful',
 'double crossing','duplicitous','exclude','false advertising','false witness','favoritism','fraudulent','free rider','freeloading',
 'hoodwinking','hypocrite','imbalance','imposters','inequality','inequity','injustice','lying','mislead','misogyny','mooching','oppression',
@@ -173,13 +173,13 @@ var consentform = {
     stimulus: '<p>Please read the following and press the button at the bottom of the screen to begin.</p><p></p>' + 
     '<p><h1><strong>CONSENT FORM</strong></h1></p><p></p>' + 
     '<div align=left>' +
-	'<p><strong>Title of Study:</strong><br />Judgments of Mind and Moral Decision Making (12-11585)</p>'+ 
+	'<p><strong>Title of Study:</strong><br />Judgments of Mind and Decision Making (12-11585)</p>'+ 
 	'<p>Faculty Advisor: Kurt Gray; kurtgray@email.unc.edu</p>' + 
     '<p><strong>What are some general things you should know about research studies? </strong><br />You are being asked to take part in a research study. To join the study is voluntary. You may refuse to join, or you may withdraw your consent to be in the study, for any reason, without penalty. Details about this study are discussed below. It is important that you understand this information so that you can make an informed choice about being in this research study.</p>' + 
-	'<p><strong>What is the purpose of this study? </strong><br />The purpose of this study is to explore moral judgments.</p>' + 
+	'<p><strong>What is the purpose of this study? </strong><br />The purpose of this study is to explore judgments.</p>' + 
 	'<p><strong>How many people will take part in this study? </strong><br />If you decide to be in this study, you will be one of approximately 300 people in this research study.</p>' + 
 	'<p><strong>What will happen if you take part in the study? </strong><br />Your part in this study will last for approximately 30 minutes. The procedures involve completing a judgment task on the computer. In this task, you will be presented with a variety of stimuli and will be asked to make a judgment about these stimuli. You might be asked to remember what you saw, categorize different words, or answer questions about the stimuli.</p>' + 
-	'<p><strong>What are the possible benefits from being in this study? </strong><br />This research is not designed to help you personally, but the results may help the investigators and future researchers to learn more about how people perceive the minds of others and whether those perceptions influence moral decisions.</p>' + 
+	'<p><strong>What are the possible benefits from being in this study? </strong><br />This research is not designed to help you personally, but the results may help the investigators and future researchers to learn more about how people perceive the minds of others and whether those perceptions influence decisions.</p>' + 
 	'<p><strong>What are the possible risks or discomforts involved from being in this study? </strong><br />There may be some risks from participating in this research study. For instance, on rare occurrences some participants may experience some discomfort with the subject matter of the study.</p>' + 
     '<p><strong>How will your privacy be protected?</strong><br />All of the data you provide will be stored anonymously. </p>' + 
     '<p><strong>What if you want to stop before your part in the study is complete?</strong><br />You can withdraw from this study at any time, without penalty and skip any question for any reason. The investigators also have the right to stop your participation if you have an unexpected reaction, have failed to follow instructions, etc.</p>' + 
@@ -423,7 +423,6 @@ var PolID2q = ["Democrat", "Republican", "Independent", " Libertarian", "Other",
 var PolID3q = ["Not at all", " ", " ", " ", " ", " ", "Extremely Important"];
 var PolID4q = ["Very Cold", " ", " ", " ", " ", " ", "Very Warm"];
 var Relq = ["Not at all Religious", " ", " ", " ", " ", " ", "Extremely Religious"];
-var Incomeq = ["Less than $10,000 USD a year", "$10,000 - $20,000 USD", "$20,000-$40,000 USD", "$40,000-$60,000 USD", "$60,000-$80,000 USD", "$80,000-$100,000 USD", "$100,000 USD a year or more"];
 var Raceq = ["White, not hispanic or latinx", "Black or African American", "Asian", "American Indian or Alaska Native", "Native Hawaiian or Other Pacific Islander", "Hispanic or Latinx", "Two or more", "Not listed"];
 var Demand1q = ["Not at all", " ", " ", " ", "Very much so"];
 var Demand2q = ["No I did not pay close attention", " ", " ", " ", "Yes I did pay close attention"];
@@ -480,12 +479,12 @@ var MaC = {
 var RWA = {
 			type: 'survey-multi-choice',
 			questions: [
-				{prompt: '<p style="text-align: left;font-size:20px;">It is great that many young people today are prepared to defy authority</p>', options: MFQq, required: true, horizontal: true,}, 
-				{prompt: '<p style="text-align: left;font-size:20px;">What our country needs most is discipline, with everyone following our leaders in unity</p>', options: MFQq, required: true, horizontal: true},
+				{prompt: '<p style="text-align: left;font-size:20px;">It is great that many young people today are prepared to defy authority</p>', options: RWAq, required: true, horizontal: true,}, 
+				{prompt: '<p style="text-align: left;font-size:20px;">What our country needs most is discipline, with everyone following our leaders in unity</p>', options: RWAq, required: true, horizontal: true},
 				{prompt: '<p style="text-align: left;font-size:20px;">God’s laws about abortion, pornography, and marriage must be strictly followed before it is too late</p>', options: MFQq, required: true, horizontal: true,}, 
-				{prompt: '<p style="text-align: left;font-size:20px;">There is nothing wrong with premarital sexual intercourse</p>', options: MFQq, required: true, horizontal: true},
-				{prompt: '<p style="text-align: left;font-size:20px;">Our society does NOT need tougher government and stricter laws</p>', options: MFQq, required: true, horizontal: true},
-				{prompt: '<p style="text-align: left;font-size:20px;">The facts on crime and the recent public disorders show we have to crack down harder on troublemakers, if we are going to preserve law and order</p>', options: MFQq, required: true, horizontal: true}
+				{prompt: '<p style="text-align: left;font-size:20px;">There is nothing wrong with premarital sexual intercourse</p>', options: RWAq, required: true, horizontal: true},
+				{prompt: '<p style="text-align: left;font-size:20px;">Our society does NOT need tougher government and stricter laws</p>', options: RWAq, required: true, horizontal: true},
+				{prompt: '<p style="text-align: left;font-size:20px;">The facts on crime and the recent public disorders show we have to crack down harder on troublemakers, if we are going to preserve law and order</p>', options: RWAq, required: true, horizontal: true}
 			  ],
 			randomize_question_order: true,
 			preamble: '<p style="text-align: left;font-size:28px;"To what extent do you disagree or agree with each of the following statements?</p>'
@@ -571,9 +570,7 @@ var demo_gen = {
         questions: [
             {prompt: '<p style="text-align: left;font-size:20px;">What is your Gender?</p>', options: Genderq, required: true, horizontal: true,}, 
             {prompt: '<p style="text-align: left;font-size:20px;">Which of the following items BEST describes your ethnic or racial background?</p>', options: Raceq, required: true, horizontal: true},
-            {prompt: '<p style="text-align: left;font-size:20px;">How religious would you consider yourself?</p>', options: Relq, required: true, horizontal: true,}, 
-            {prompt: '<p style="text-align: left;font-size:20px;">What is your household income?</p>', options: Incomeq, required: true, horizontal: true}
-          ],
+            {prompt: '<p style="text-align: left;font-size:20px;">How religious would you consider yourself?</p>', options: Relq, required: true, horizontal: true,}          ],
         randomize_question_order: true,
         preamble: '<p style="text-align: left;font-size:28px;"Using the scales provided, please respond to each question about you as an individual.</p>'
         };
@@ -596,9 +593,9 @@ var demo_PolIQ = {
 var demo_Warm = {
 		type: 'survey-multi-choice',
 		questions: [
-			{prompt: '<p style="text-align: left;font-size:20px;">Republicans</p>', options: PolIDq, required: true, horizontal: true,}, 
-			{prompt: '<p style="text-align: left;font-size:20px;">Democrats</p>', options: PolIDq, required: true, horizontal: true},
-			{prompt: '<p style="text-align: left;font-size:20px;">Independents</p>', options: PolIDq, required: true, horizontal: true,}
+			{prompt: '<p style="text-align: left;font-size:20px;">Republicans</p>', options: PolID4q, required: true, horizontal: true,}, 
+			{prompt: '<p style="text-align: left;font-size:20px;">Democrats</p>', options: PolID4q, required: true, horizontal: true},
+			{prompt: '<p style="text-align: left;font-size:20px;">Independents</p>', options: PolID4q, required: true, horizontal: true,}
 
 		],
 		randomize_question_order: true,
@@ -638,8 +635,7 @@ rsvp_task.push(demo_FinalQs);
 
 var debrief = {
       type: "html-keyboard-response",
-      stimulus: "<p>Thank you for your participation!</p>" + 
-      "<p>Some debrief things here.",
+      stimulus: "<p>Thank you for your participation! You will be redirected on the next page.</p>",
       post_trial_gap: 2000
     };
 rsvp_task.push(debrief);
