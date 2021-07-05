@@ -302,8 +302,8 @@ var instructionsGEN = {
 		'</p> Occasionally, you will be prompted to write in the last two words you saw. It does not matter what order you type them in. Please separate the words by a comma. If you do not remember one or both of the words, you can type a 0 for each word you do not remember, again separated by a comma.</p>' +
 		'</p> Before each stream of words begins, you will see a + on the screen. Please look directly at the + so that you are ready when the words begin to show. </p>' +
 		'</p> We will begin with a practice trial. </p>' +
-		" <p><b>Please press the 'm' key to continue. </b></p></div>"],
-	choices: ['m'],
+		" <p><b>Please press the SPACE BAR to continue. </b></p></div>"],
+	choices: [' '],
 	data: {test_part: 'instructions'},
 	post_trial_gap: 1500
   };
