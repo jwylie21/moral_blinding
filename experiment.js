@@ -286,7 +286,7 @@ function make_rsvp_timeline(trials, phase) {
 // Initial full screen
 rsvp_task.push({
   type: 'fullscreen',
-  message: '<div class="instructions"><p>Welcome to our experiment! </p><p>Please turn off any music or television, and put your phone on silent. This experiment will take about 15-20 minutes. <p>Press Continue to begin.</p></div>',
+  message: '<div class="instructions"><p>Welcome to our experiment! </p><p>Please turn off any music or television, and put your phone on silent. This experiment will take about 25-30 minutes. <p>Press Continue to begin.</p></div>',
   fullscreen_mode: true
 });
 
@@ -323,8 +323,8 @@ var instructions_prac2 = {
 			  "will appear more rapidly.</p>" +
 			  '<p>Remember, you should type in the last two words that appeared in <font color="green"><b>green</b>, <font color="black">separated by a comma. Type a 0 for any words you do not remember. </p>' +
 			  "<p>You will now read a short passage and then answer a question before beginning the main task. Please read the passage carefully and respond honestly.</p>" +
-			  "<p>Press any key to continue.</p></div>",
-	/*choices: ['space'],*/ 
+			  "<p>Press any key the SPACE BAR continue.</p></div>",
+	choices: [' '], 
 	data: {test_part: 'instructions'},
 	post_trial_gap: 1000
   };
@@ -351,8 +351,9 @@ var instructions_begin = {
 			  "</p>" +
 			  "<p> We will now begin the next block of the task. Remember, the words will appear VERY quickly! Make sure you are paying close attention." +
 			  "</p>" +
-			  "<p>Press any key to continue.</p>" +
+			  "<p>Press the SPACE BAR to continue.</p>" +
 			  "<p></p></div>",
+	choices: [' '],
 	data: {test_part: 'instructions'},
 	post_trial_gap: 1000
   };
@@ -389,8 +390,9 @@ if (blockorder == 1){
                 "</p>" +
                 "<p> We will now begin the next block of the task." +
                 "</p>" +
-                "<p>Press any key to continue</p>" +
-                "<p></p></div>",
+                "<p>Press the SPACE BAR to continue</p>" +
+				"<p></p></div>",
+		choices: [' '],
         data: {test_part: 'instructions'},
         post_trial_gap: 1000
     };
@@ -440,8 +442,9 @@ lagvector = jsPsych.randomization.repeat([1,2], targetsAuthority.length);
                 "</p>" +
                 "<p> We will now begin the next block of the task." +
                 "</p>" +
-                "<p>Press any key to continue</p>" +
-                "<p></p></div>",
+                "<p>Press the SPACE BAR to continue</p>" +
+				"<p></p></div>",
+		choices: [' '],
         data: {test_part: 'instructions'},
         post_trial_gap: 1000
     };
@@ -475,7 +478,8 @@ var instructions_blockend = {
 	type: "html-keyboard-response",
 	stimulus: "<div class='instructions'><p>THAT WAS THE FINAL BLOCK, " +
 			  "We will now ask you some questions about yourself.</p>" +
-			  "<p>Please press ANY KEY to continue.</p></div>",
+			  "<p>Please press the SPACE BAR to continue.</p></div>",
+	choices: [' '],
 	data: {test_part: 'instructions'}, // CHANGE THIS??
 	post_trial_gap: 1000
   };
