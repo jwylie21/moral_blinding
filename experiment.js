@@ -73,7 +73,7 @@ var targetsAuthority2 = targetsAuthority
 var manip1 = {
 	type: 'survey-text',
 	questions: [
-	  {prompt: "On May 25, 2020, the final moments of African-American man George Floyd were captured on film. In the video, Minneapolis Officer Derek Chauvin can be seen kneeling on George’s neck for a prolonged period of time. The footage was subsequently circulated on social media, re-igniting unresolved tension surrounding the treatment of people of color in the United States. The viral footage resulted in widespread public outcry throughout the United States. As a result of his actions, Derek Chauvin was dismissed from his position, and recently found guilty of murder. <p>In your own words, do you feel that the prosecution of Derek Chauvin was appropriate? Why or why not?</p>", rows: 6, columns: 40}
+	  {prompt: "On May 25, 2020, the final moments of African-American man George Floyd were captured on film. In the video, Minneapolis Officer Derek Chauvin can be seen kneeling on George's neck for a prolonged period of time. The footage was subsequently circulated on social media, re-igniting unresolved tension surrounding the treatment of people of color in the United States. The viral footage resulted in widespread public outcry throughout the United States. As a result of his actions, Derek Chauvin was dismissed from his position, and recently found guilty of murder. <p>In your own words, do you feel that the prosecution of Derek Chauvin was appropriate? Why or why not?</p>", rows: 6, columns: 40}
 	],
   };
 
@@ -142,7 +142,7 @@ var rsvp_demo_stimulus_block = {
 // Response trial
 var response_block = {
   type: 'survey-text',
-  questions: [{prompt: "which words appeared in green?"}],
+  questions: [{prompt: "Which words appeared in green? Please separate them with a comma."}],
   data: jsPsych.timelineVariable('data'),
 }
 
@@ -163,7 +163,7 @@ function rsvp_trial(o) {
 	var target                    = jsPsych.randomization.sampleWithoutReplacement(o.targetwords, 1);
 	//stimuli[o.t1_location]         =  '<div class = "target">'.concat(stimuli[o.t1_location]).concat("</div>");
 	stimuli[o.t1_location + o.lag] = '<div class = "target">'.concat(target[0]).concat("</div>");
-	for (stim in stimuli){console.log('stimuli: '+stimuli[stim])};
+	//for (stim in stimuli){console.log('stimuli: '+stimuli[stim])};
 	return({stimuli: stimuli, targets: target[0]});
 }
 
@@ -286,7 +286,7 @@ function make_rsvp_timeline(trials, phase) {
 // Initial full screen
 rsvp_task.push({
   type: 'fullscreen',
-  message: '<div class="instructions"><p>Welcome to our experiment! </p><p>Please turn off any music or television, and put your phone on silent. This experiment will take about 15-20 minutes. <p>Press any key to begin.</p></div>',
+  message: '<div class="instructions"><p>Welcome to our experiment! </p><p>Please turn off any music or television, and put your phone on silent. This experiment will take about 15-20 minutes. <p>Press Continue to begin.</p></div>',
   fullscreen_mode: true
 });
 
@@ -299,7 +299,7 @@ var instructionsGEN = {
 	stimulus: ['<div style="color:black;font-size:30px;line-height:1.5"> This experiment tests your memory about words. </p>' +
 		" <p> First, you will read a short passage and answer some questions.</p>"+ 
 		' <p> Then, you will be tested on your ability to remember the last two words that appear in <font color="green"><b>green</b></font> in a stream of words.' +
-		'</p> Occasionally, you will be prompted to write in the last two words you saw. It does not matter what order you type them in. Please separate the words by a comma. If you do not remember one or both of the words, you can type a 0 for each word you do not remember—again separated by a comma.</p>' +
+		'</p> Occasionally, you will be prompted to write in the last two words you saw. It does not matter what order you type them in. Please separate the words by a comma. If you do not remember one or both of the words, you can type a 0 for each word you do not remember, again separated by a comma.</p>' +
 		'</p> Before each stream of words begins, you will see a + on the screen. Please look directly at the + so that you are ready when the words begin to show. </p>' +
 		'</p> We will begin with a practice trial. </p>' +
 		" <p><b>Please press any key to continue. </b></p></div>"],
@@ -321,7 +321,7 @@ var instructions_prac2 = {
 			  "the words appeared quite slowly.</p>" +
 			  "<p>The real task is more challenging, as the words " +
 			  "will appear more rapidly.</p>" +
-			  '<p>Remember, you should type in the last two words that appeared in <font color="green"><b>green</b>, separated by a comma. Type a 0 for any words you do not remember. </p>' +
+			  '<p>Remember, you should type in the last two words that appeared in <font color="green"><b>green</b>, <font color="black">separated by a comma. Type a 0 for any words you do not remember. </p>' +
 			  "<p>You will now read a short passage and then answer a question before beginning the main task. Please read the passage carefully and respond honestly.</p>" +
 			  "<p>Press any key to continue.</p></div>",
 	/*choices: ['space'],*/ 
@@ -341,7 +341,7 @@ rsvp_task.push(cond);
 //	condition: cond,
 //	brwser: browser,
 //	operatingS: OS,
-//	order: shuffledList  //what will this be to get the order of the fairness vs. authority
+//  block_order: blockorder
 //  });
 
 // SIXTH SCREEN
@@ -359,54 +359,115 @@ var instructions_begin = {
 rsvp_task.push(instructions_begin);
 
 // SEVENTH SCREEN
-//Run a Fairness block
-blocklength = targetsFairness.length * 2
-lagvector = jsPsych.randomization.repeat([1,2], targetsFairness.length);
-for (i = 0; i < blocklength; i++) {
-		console.log('i: ', i);
-		//pick a random t1 location 
-		t1location = jsPsych.randomization.sampleWithReplacement([0,3], 1) //maybe adapt this randomization
-		if(lagvector[i] == 1) {
-			//run a trial with short lag
-			rsvp_task.push(make_rsvp_timeline([ {t1_location: t1location[0], lag: 1, targetwords: targetsFairness}], 'FairnessBlock')); //probably change instructions
-		}
-		if (lagvector[i] == 2) {
-			//run a trial with longer lag
-			rsvp_task.push(make_rsvp_timeline([ {t1_location: t1location[0], lag: 7, targetwords: targetsFairness2}], 'FairnessBlock')); //probably change instructions
-		}
-	}
+// randomize the order of blocks
+var blockorder = jsPsych.randomization.sampleWithoutReplacement([1, 2], 1);
+console.log('blockorder: '+blockorder)
 
-// EIGHTH SCREEN
-// Instructions Intermezzo
-var instructions_inter1 = {
-	type: "html-keyboard-response",
-	stimulus: "<div class='instructions'><p>Wow, well done. " +
-			  "</p>" +
-			  "<p> We will now begin the next block of the task." +
-			  "</p>" +
-			  "<p></p>" +
-			  "<p></p></div>",
-	data: {test_part: 'instructions'},
-	post_trial_gap: 1000
-  };
-rsvp_task.push(instructions_inter1);
+if (blockorder == 1){
+//Run a Fairness block first
+    blocklength = targetsFairness.length * 2
+    lagvector = jsPsych.randomization.repeat([1,2], targetsFairness.length);
+    for (i = 0; i < blocklength; i++) {
+            //console.log('i: ', i);
+            //pick a random t1 location 
+            t1location = jsPsych.randomization.sampleWithReplacement([0,3], 1) //maybe adapt this randomization
+            if(lagvector[i] == 1) {
+                //run a trial with short lag
+                rsvp_task.push(make_rsvp_timeline([ {t1_location: t1location[0], lag: 1, targetwords: targetsFairness}], 'FairnessBlock')); //probably change instructions
+            }
+            if (lagvector[i] == 2) {
+                //run a trial with longer lag
+                rsvp_task.push(make_rsvp_timeline([ {t1_location: t1location[0], lag: 7, targetwords: targetsFairness2}], 'FairnessBlock')); //probably change instructions
+            }
+        }
 
-// NINTH SCREEN
+    // EIGHTH SCREEN
+    // Instructions Intermezzo
+    var instructions_inter1 = {
+        type: "html-keyboard-response",
+        stimulus: "<div class='instructions'><p>Wow, well done. " +
+                "</p>" +
+                "<p> We will now begin the next block of the task." +
+                "</p>" +
+                "<p>Press any key to continue</p>" +
+                "<p></p></div>",
+        data: {test_part: 'instructions'},
+        post_trial_gap: 1000
+    };
+    rsvp_task.push(instructions_inter1);
+
+    // NINTH SCREEN
+    //Run an authority block 
+    blocklength = targetsAuthority.length * 2
+    lagvector = jsPsych.randomization.repeat([1,2], targetsAuthority.length);
+        for (i = 0; i < blocklength; i++) {
+            //pick a random t1 location 
+            t1location = jsPsych.randomization.sampleWithReplacement([0,3], 1) //maybe adapt this kind of randomization
+            if(lagvector[i] == 1) {
+                //run a trial with short lag
+                rsvp_task.push(make_rsvp_timeline([ {t1_location: t1location[0], lag: 1, targetwords: targetsAuthority}], 'AuthorityBlock')); //probably change instructions
+            }
+            if (lagvector[i] == 2) {
+                //run a trial with longer lag
+                rsvp_task.push(make_rsvp_timeline([ {t1_location: t1location[0], lag: 7, targetwords: targetsAuthority2}], 'AuthorityBlock')); //probably change instructions
+            }
+        }
+    }
+
+if (blockorder == 2){
+//Run a Authority block first
 //Run an authority block 
 blocklength = targetsAuthority.length * 2
 lagvector = jsPsych.randomization.repeat([1,2], targetsAuthority.length);
-	for (i = 0; i < blocklength; i++) {
-		//pick a random t1 location 
-		t1location = jsPsych.randomization.sampleWithReplacement([0,3], 1) //maybe adapt this kind of randomization
-		if(lagvector[i] == 1) {
-			//run a trial with short lag
-			rsvp_task.push(make_rsvp_timeline([ {t1_location: t1location[0], lag: 1, targetwords: targetsAuthority}], 'AuthorityBlock')); //probably change instructions
-		}
-		if (lagvector[i] == 2) {
-			//run a trial with longer lag
-			rsvp_task.push(make_rsvp_timeline([ {t1_location: t1location[0], lag: 7, targetwords: targetsAuthority2}], 'AuthorityBlock')); //probably change instructions
-		}
-	}
+    for (i = 0; i < blocklength; i++) {
+        //pick a random t1 location 
+        t1location = jsPsych.randomization.sampleWithReplacement([0,3], 1) //maybe adapt this kind of randomization
+        if(lagvector[i] == 1) {
+            //run a trial with short lag
+            rsvp_task.push(make_rsvp_timeline([ {t1_location: t1location[0], lag: 1, targetwords: targetsAuthority}], 'AuthorityBlock')); //probably change instructions
+        }
+        if (lagvector[i] == 2) {
+            //run a trial with longer lag
+            rsvp_task.push(make_rsvp_timeline([ {t1_location: t1location[0], lag: 7, targetwords: targetsAuthority2}], 'AuthorityBlock')); //probably change instructions
+        }
+    }
+
+    // EIGHTH SCREEN
+    // Instructions Intermezzo
+    var instructions_inter1 = {
+        type: "html-keyboard-response",
+        stimulus: "<div class='instructions'><p>Wow, well done. " +
+                "</p>" +
+                "<p> We will now begin the next block of the task." +
+                "</p>" +
+                "<p>Press any key to continue</p>" +
+                "<p></p></div>",
+        data: {test_part: 'instructions'},
+        post_trial_gap: 1000
+    };
+    rsvp_task.push(instructions_inter1);
+
+    // NINTH SCREEN
+    // Run a fairness block
+    blocklength = targetsFairness.length * 2
+    lagvector = jsPsych.randomization.repeat([1,2], targetsFairness.length);
+    for (i = 0; i < blocklength; i++) {
+            //console.log('i: ', i);
+            //pick a random t1 location 
+            t1location = jsPsych.randomization.sampleWithReplacement([0,3], 1) //maybe adapt this randomization
+            if(lagvector[i] == 1) {
+                //run a trial with short lag
+                rsvp_task.push(make_rsvp_timeline([ {t1_location: t1location[0], lag: 1, targetwords: targetsFairness}], 'FairnessBlock')); //probably change instructions
+            }
+            if (lagvector[i] == 2) {
+                //run a trial with longer lag
+                rsvp_task.push(make_rsvp_timeline([ {t1_location: t1location[0], lag: 7, targetwords: targetsFairness2}], 'FairnessBlock')); //probably change instructions
+            }
+        }
+    }
+
+
+
 
 // TENTH SCREEN
 //Some final instructions
@@ -485,7 +546,7 @@ var RWA = {
 			questions: [
 				{prompt: '<p style="text-align: left;font-size:20px;">It is great that many young people today are prepared to defy authority</p>', options: RWAq, required: true, horizontal: true,}, 
 				{prompt: '<p style="text-align: left;font-size:20px;">What our country needs most is discipline, with everyone following our leaders in unity</p>', options: RWAq, required: true, horizontal: true},
-				{prompt: '<p style="text-align: left;font-size:20px;">God’s laws about abortion, pornography, and marriage must be strictly followed before it is too late</p>', options: MFQq, required: true, horizontal: true,}, 
+				{prompt: "<p style='text-align: left;font-size:20px;'>God's laws about abortion, pornography, and marriage must be strictly followed before it is too late</p>", options: MFQq, required: true, horizontal: true,}, 
 				{prompt: '<p style="text-align: left;font-size:20px;">There is nothing wrong with premarital sexual intercourse</p>', options: RWAq, required: true, horizontal: true},
 				{prompt: '<p style="text-align: left;font-size:20px;">Our society does NOT need tougher government and stricter laws</p>', options: RWAq, required: true, horizontal: true},
 				{prompt: '<p style="text-align: left;font-size:20px;">The facts on crime and the recent public disorders show we have to crack down harder on troublemakers, if we are going to preserve law and order</p>', options: RWAq, required: true, horizontal: true}
